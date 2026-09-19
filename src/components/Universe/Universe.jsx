@@ -1,0 +1,165 @@
+import { useState } from 'react'
+import { useReducedMotion } from '../../hooks/useReducedMotion'
+import StarField from '../UI/StarField'
+
+const NODES = [
+  { id: 'beginning', title: 'The Beginning', x: 18, y: 26, icon: 'spark' },
+  { id: 'museum', title: 'Memory Museum', x: 62, y: 16, icon: 'frame' },
+  { id: 'unsaid', title: "Things I Don't Say Enough", x: 82, y: 40, icon: 'note' },
+  { id: 'letter', title: 'A Letter For You', x: 30, y: 52, icon: 'envelope' },
+  { id: 'openwhen', title: 'Open When…', x: 70, y: 64, icon: 'seal' },
+  { id: 'quiz', title: 'How Well Do You Know Us', x: 12, y: 70, icon: 'question' },
+  { id: 'soundtrack', title: 'Our Soundtrack', x: 46, y: 78, icon: 'wave' },
+  { id: 'surprise', title: 'Surprise Me', x: 90, y: 80, icon: 'star4' },
+  { id: 'future', title: 'The Future', x: 50, y: 38, icon: 'path' },
+  { id: 'final', title: 'One Last Thing', x: 22, y: 90, icon: 'dot' },
+]
+
+// A gentle wandering line through the nodes, purely decorative — it gives
+// the field a constellation feel without needing real graph data.
+const CONNECTIONS = NODES.slice(0, -1).map((node, i) => [node, NODES[i + 1]])
+
+export default function Universe({ navigate }) {
+  const reduced = useReducedMotion()
+  const [activeId, setActiveId] = useState(null)
+
+  function selectNode(id) {
+    if (activeId) return
+    if (reduced) {
+      navigate(id)
+      return
+    }
+    setActiveId(id)
+    setTimeout(() => navigate(id), 420)
+  }
+
+  return (
+    <div className="screen universe">
+      <StarField density={0.7} respondToPointer={!reduced} />
+
+      <div className="screen__inner universe__intro fade-in">
+        <p className="eyebrow">Our little universe</p>
+        <h1 className="heading-l">Wander wherever you like.</h1>
+        <p className="body-text body-text--soft">Every star holds something. There's no right order.</p>
+      </div>
+
+      <div
+        className={`universe__field ${activeId ? 'is-traveling' : ''}`}
+        role="navigation"
+        aria-label="Sections of the universe"
+      >
+        <svg className="universe__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          {CONNECTIONS.map(([a, b], i) => (
+            <line
+              key={i}
+              x1={a.x} y1={a.y} x2={b.x} y2={b.y}
+              className={
+                activeId && (a.id === activeId || b.id === activeId)
+                  ? 'universe__line universe__line--lit'
+                  : 'universe__line'
+              }
+            />
+          ))}
+        </svg>
+
+        {NODES.map((node, i) => {
+          const isActive = activeId === node.id
+          const isDimmed = activeId && !isActive
+          return (
+            <button
+              key={node.id}
+              className={`universe__node ${reduced ? '' : 'universe__node--float'} ${isActive ? 'is-active' : ''} ${isDimmed ? 'is-dimmed' : ''}`}
+              style={{
+                left: `${node.x}%`,
+                top: `${node.y}%`,
+                '--enter-delay': `${(i % 6) * 70}ms`,
+                '--float-delay': `${(i % 5) * 0.6}s`,
+              }}
+              onClick={() => selectNode(node.id)}
+              disabled={!!activeId}
+            >
+              <span className="universe__node-glow" aria-hidden="true" />
+              <NodeIcon name={node.icon} />
+              <span className="universe__node-label">{node.title}</span>
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function NodeIcon({ name }) {
+  const props = { width: 20, height: 20, viewBox: '0 0 20 20', 'aria-hidden': true, fill: 'none' }
+  switch (name) {
+    case 'spark':
+      return (
+        <svg {...props}>
+          <path d="M10 2v5M10 13v5M2 10h5M13 10h5M4.5 4.5l3.2 3.2M12.3 12.3l3.2 3.2M15.5 4.5l-3.2 3.2M7.7 12.3l-3.2 3.2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        </svg>
+      )
+    case 'frame':
+      return (
+        <svg {...props}>
+          <rect x="3" y="4" width="14" height="12" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
+          <circle cx="7.5" cy="9" r="1.3" stroke="currentColor" strokeWidth="1.1" />
+          <path d="M3 14l4-3.5 3 2.5 3.5-4 3.5 4.5" stroke="currentColor" strokeWidth="1.1" />
+        </svg>
+      )
+    case 'note':
+      return (
+        <svg {...props}>
+          <path d="M4 3h9l3 3v11H4z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+          <path d="M7 9h6M7 12.5h4" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+        </svg>
+      )
+    case 'envelope':
+      return (
+        <svg {...props}>
+          <rect x="2.5" y="5" width="15" height="10.5" rx="1.3" stroke="currentColor" strokeWidth="1.3" />
+          <path d="M3 6l7 5.5L17 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )
+    case 'seal':
+      return (
+        <svg {...props}>
+          <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="1.3" />
+          <path d="M10 6.5v3.8l2.6 1.6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+      )
+    case 'question':
+      return (
+        <svg {...props}>
+          <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.3" />
+          <path d="M7.8 8a2.2 2.2 0 1 1 3.4 1.8c-.9.6-1.2 1-1.2 1.9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+          <circle cx="10" cy="14.2" r="0.6" fill="currentColor" />
+        </svg>
+      )
+    case 'wave':
+      return (
+        <svg {...props}>
+          <path d="M2 10c1.5-3 2.5-3 4 0s2.5 3 4 0 2.5-3 4 0 2.5 3 4 0" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        </svg>
+      )
+    case 'star4':
+      return (
+        <svg {...props}>
+          <path d="M10 2l1.6 5.4L17 9l-5.4 1.6L10 16l-1.6-5.4L3 9l5.4-1.6z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+        </svg>
+      )
+    case 'path':
+      return (
+        <svg {...props}>
+          <circle cx="4" cy="15" r="1.6" stroke="currentColor" strokeWidth="1.2" />
+          <circle cx="16" cy="5" r="1.6" stroke="currentColor" strokeWidth="1.2" />
+          <path d="M5.4 13.8C9 9 11 7.5 14.6 6.2" stroke="currentColor" strokeWidth="1.1" strokeDasharray="1 2.6" strokeLinecap="round" />
+        </svg>
+      )
+    default:
+      return (
+        <svg {...props}>
+          <circle cx="10" cy="10" r="2.4" fill="currentColor" />
+        </svg>
+      )
+  }
+}

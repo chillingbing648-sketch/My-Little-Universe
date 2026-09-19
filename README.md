@@ -25,24 +25,88 @@
 
 ## ✦ Technology at a Glance
 
-<p align="center">
-  <img src="./assets/tech-stack.svg" alt="Technology stack overview for The Little Universe" width="1100">
-</p>
+The stack is intentionally lightweight: **React** handles the experience layer, **Vite** handles development and production bundling, and **CSS** carries the visual language, responsive behavior, motion, and atmosphere.
 
-<table align="center">
+<table>
 <tr>
-<td align="center"><b>Frontend</b><br>React 18 · React DOM</td>
-<td align="center"><b>Build</b><br>Vite 5</td>
-<td align="center"><b>Language</b><br>JavaScript</td>
-<td align="center"><b>Styling</b><br>CSS3</td>
-</tr>
-<tr>
-<td align="center"><b>Typography</b><br>Sora · Fraunces</td>
-<td align="center"><b>Markup</b><br>HTML5</td>
-<td align="center"><b>CI</b><br>GitHub Actions</td>
-<td align="center"><b>Hosting</b><br>GitHub Pages</td>
+<td width="25%" valign="top">
+
+### ⚛ Frontend
+**React 18**  
+React DOM
+
+Component-driven architecture for the individual sections, shared UI, navigation, overlays, and interactive states.
+
+</td>
+<td width="25%" valign="top">
+
+### ⚡ Tooling
+**Vite 5**  
+Node.js · npm
+
+Fast development server and production build pipeline with a minimal dependency footprint.
+
+</td>
+<td width="25%" valign="top">
+
+### ◇ Interface
+**JavaScript**  
+HTML5 · CSS3
+
+ES modules, semantic markup, responsive layouts, layered visual effects, transitions, and custom interaction styling.
+
+</td>
+<td width="25%" valign="top">
+
+### ☁ Delivery
+**GitHub Actions**  
+GitHub Pages
+
+Every production deployment is built from `main` and published as a fresh static artifact.
+
+</td>
 </tr>
 </table>
+
+### Stack
+
+```text
+React 18
+├── React DOM
+├── Component-based sections
+└── Hash-based navigation
+
+Vite 5
+├── Development server
+├── Production bundling
+└── Static build output
+
+JavaScript + HTML5 + CSS3
+├── Interaction logic
+├── Responsive presentation
+├── Motion + transitions
+└── Visual design system
+
+Google Fonts
+├── Sora
+└── Fraunces
+
+GitHub Actions
+└── Automated production build
+
+GitHub Pages
+└── Static hosting
+```
+
+### Why this stack?
+
+**Small footprint.** The project does not need a backend, database, authentication layer, or large framework surface to deliver the experience.
+
+**Component separation.** Each destination is isolated into its own React component area, while shared behaviors live in reusable hooks and UI components.
+
+**Design-first CSS.** The visual identity is driven through a centralized design system plus section-specific styling rather than a heavy UI framework.
+
+**Deployment-ready by default.** The repository builds a fresh production bundle through GitHub Actions instead of storing generated `dist/` files in source control.
 
 ---
 

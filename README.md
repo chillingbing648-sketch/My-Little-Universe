@@ -1,99 +1,329 @@
+<div align="center">
+
 # The Little Universe I Made for You
 
-A private, interactive digital gift. Built with React + Vite, no backend, no
-accounts, nothing sent anywhere.
+**A cinematic, interactive digital gift — built as a small universe of memories, words, music, and moments.**
 
-## 1. Put in your own content
+<p>
+  <a href="https://chillingbing648-sketch.github.io/My-Little-Universe/">Live Experience</a>
+  ·
+  <a href="https://github.com/chillingbing648-sketch/My-Little-Universe">Source</a>
+</p>
 
-Everything you need to personalize lives in **one file**:
+</div>
 
+---
+
+## ✦ Tech Stack
+
+<p>
+  <img alt="React" src="https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+  <img alt="Vite" src="https://img.shields.io/badge/Vite_5-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-0B0F1A?style=for-the-badge&logo=javascript&logoColor=F7DF1E">
+  <img alt="CSS3" src="https://img.shields.io/badge/CSS3-0B0F1A?style=for-the-badge&logo=css3&logoColor=1572B6">
+  <img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub_Pages-0B0F1A?style=for-the-badge&logo=github&logoColor=FFFFFF">
+</p>
+
+## ✧ Features
+
+- **11 interactive destinations** connected through a constellation-style universe.
+- **Cinematic transitions** between sections with layered atmosphere and motion.
+- **Memory-led storytelling** across timelines, exhibits, letters, surprises, music, and future plans.
+- **Single-file personalization** through `src/data/giftData.js`.
+- **Responsive interaction design** with mobile navigation and reduced-motion support.
+- **Static architecture** with no backend, account system, or database.
+
+---
+
+## Preview
+
+<p align="center">
+  <img src="./assets/sections-preview.svg" alt="The Little Universe sections interface preview" width="1100">
+</p>
+
+<p align="center"><sub>The newest sections experience — a constellation map for navigating every part of the gift.</sub></p>
+
+---
+
+## The Concept
+
+**The Little Universe** is designed as a single-page digital experience rather than a conventional website.
+
+The opening presents the gift as a private space. From there, the visitor enters a constellation of destinations, where each star leads to a different kind of memory or interaction.
+
+### Experience Map
+
+| Destination | Purpose |
+|---|---|
+| **Universe** | Interactive constellation map and section navigation |
+| **The Beginning** | Chronological memory timeline |
+| **Memory Museum** | Exhibit-style memories with photo viewing |
+| **Things Unsaid** | Small thoughts revealed through interactive cards |
+| **A Letter** | A paper-style personal letter |
+| **Open When...** | Conditional letters with optional date locks |
+| **The Quiz** | A lightweight shared-memory quiz |
+| **Soundtrack** | Songs, covers, explanations, and optional playback |
+| **Surprise Me** | Randomized little messages and memories |
+| **The Future** | Things to do, plus abstract destinations |
+| **Final Reveal** | Closing message and final memory |
+
+---
+
+## Design Direction
+
+The interface is built around a **warm midnight / starlight** visual language:
+
+- deep midnight backgrounds instead of pure black
+- restrained gold, blush, and lavender accents
+- editorial serif typography paired with a modern sans-serif UI
+- soft panels, paper textures, halos, and constellation lines
+- motion used as storytelling rather than decoration
+
+The aim is to make navigation feel like **moving through a place**, not clicking through a collection of pages.
+
+---
+
+## Architecture
+
+```text
+React App
+│
+├── App.jsx
+│   └── Hash-based section routing
+│
+├── components/
+│   ├── Opening/
+│   ├── Universe/
+│   ├── Timeline/
+│   ├── MemoryMuseum/
+│   ├── Unsaid/
+│   ├── Letter/
+│   ├── OpenWhen/
+│   ├── Quiz/
+│   ├── Soundtrack/
+│   ├── Surprise/
+│   ├── Future/
+│   ├── FinalReveal/
+│   ├── Navigation/
+│   ├── PhotoViewer/
+│   └── UI/
+│
+├── data/
+│   └── giftData.js
+│       └── Content + settings
+│
+├── hooks/
+│   └── Reusable interaction behavior
+│
+├── styles/
+│   ├── global.css
+│   └── sections.css
+│
+└── public/
+    ├── memories/
+    ├── photos/
+    ├── music/
+    └── icons/
 ```
+
+### Runtime flow
+
+```text
+Opening
+   ↓
+Universe
+   ↓
+Hash route
+   ↓
+Section component
+   ↓
+Shared navigation + transitions + music + Easter eggs
+```
+
+There is no server-side application layer. The experience is delivered as a static React build.
+
+---
+
+## Personalize It
+
+The project intentionally keeps personal content separate from presentation code.
+
+Edit:
+
+```text
 src/data/giftData.js
 ```
 
-Open it and replace the placeholder names, dates, memories, letter text,
-quiz answers, songs, future list, and the secret message. There are comments
-above every section explaining what goes where. You don't need to touch
-anything in `src/components`.
+That file contains the configurable content for:
 
-Feature toggles (music on/off, date locks, Easter eggs, etc.) are in the
-`settings` object at the top of the same file.
+- names
+- opening text
+- timeline entries
+- museum exhibits
+- unsaid thoughts
+- letter content
+- Open When messages and unlock dates
+- quiz questions and answers
+- songs
+- future plans
+- surprise messages
+- final reveal
+- settings and Easter eggs
 
-## 2. Add your photos and music
+You normally should not need to edit the components to personalize the experience.
 
+### Add media
+
+Place files in:
+
+```text
+public/memories/
+public/photos/
+public/music/
 ```
-public/memories/   → photos for "The Beginning" timeline and "One Last Thing"
-public/photos/     → photos for the Memory Museum and song covers
-public/music/      → your background track and any per-song audio files
+
+Use repository-safe relative references such as:
+
+```js
+'./memories/memory-01.jpg'
+'./photos/song-01.jpg'
+'./music/our-song.mp3'
 ```
 
-Reference them in `giftData.js` with a leading slash, e.g. `/memories/us-01.jpg`.
-If a file is missing, the site shows a soft placeholder instead of breaking —
-so you can fill these in gradually.
+Missing media is handled with placeholders or hidden playback controls instead of taking down the rest of the experience.
 
-## 3. Run it locally
+---
 
-You'll need [Node.js](https://nodejs.org) 18 or newer installed.
+## Run Locally
+
+Requires Node.js 18+.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the local URL it prints (usually `http://localhost:5173`).
+Open the local Vite URL shown in the terminal.
 
-## 4. Build for production
+For a production build:
 
 ```bash
 npm run build
+npm run preview
 ```
 
-This creates a `dist/` folder with the finished, optimized site.
+---
 
-## 5. Deploy it
+## Deployment
 
-**Vercel or Netlify (easiest):** drag the project into either dashboard, or
-connect the folder as a Git repo — both auto-detect Vite and just work.
-Build command: `npm run build`. Output folder: `dist`.
+The repository is deployed through **GitHub Actions → GitHub Pages**.
 
-**GitHub Pages:** if your site will live at
-`https://USERNAME.github.io/REPO_NAME/`, open `vite.config.js` and change:
-
-```js
-base: '/',
+```text
+main
+ ↓
+GitHub Actions
+ ↓
+npm ci
+ ↓
+npm run build
+ ↓
+fresh dist/
+ ↓
+GitHub Pages
 ```
 
-to:
+The generated `dist/` directory is intentionally **not committed** to the repository. It is produced fresh by CI for each deployment.
 
-```js
-base: '/REPO_NAME/',
+Deployment workflow:
+
+```text
+.github/workflows/deploy.yml
 ```
 
-Then run `npm run build` and publish the contents of `dist/` (e.g. with the
-`gh-pages` npm package, or GitHub's own "Deploy from a branch" setting
-pointed at a `docs/` folder or the `gh-pages` branch).
+---
 
-## Project structure
+## Project Structure
 
+```text
+.
+├── .github/workflows/deploy.yml
+├── public/
+│   ├── memories/
+│   ├── photos/
+│   ├── music/
+│   └── icons/
+├── src/
+│   ├── components/
+│   ├── data/
+│   ├── hooks/
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── .gitignore
 ```
-src/
-  data/giftData.js      ← all your personal content and settings
-  components/           ← one folder per section of the experience
-  hooks/                ← small reusable behaviors (reduced motion, routing)
-  styles/                ← the design system (global.css) and per-section
-                           styles (sections.css)
-public/
-  memories/ photos/ music/ icons/   ← your assets go here
+
+---
+
+## Engineering Notes
+
+**Hash navigation** keeps the experience inside a single-page runtime while still allowing direct section URLs.
+
+**Content/data separation** keeps personal writing and media references in one place, reducing the need to modify presentation code.
+
+**Graceful media handling** prevents a missing image or audio file from breaking the overall experience.
+
+**Reduced-motion support** respects the visitor's system preference and the project's own particle setting.
+
+**Responsive visual complexity** lets the desktop universe carry the richer constellation treatment while the mobile layout switches to a simpler section list.
+
+---
+
+## Accessibility & UX
+
+The project includes:
+
+- keyboard-focus states for interactive controls
+- semantic buttons for interaction
+- minimum touch-friendly control sizes
+- responsive mobile navigation
+- reduced-motion handling
+- visible state changes for active, selected, and playing elements
+
+---
+
+## Roadmap
+
+The current repository is intentionally focused on the core static experience.
+
+Potential future additions can live here without changing the central structure:
+
+```text
+• richer personal media
+• more memory exhibits
+• additional Open When letters
+• expanded soundtrack collection
+• more interactive hidden details
 ```
 
-The site is a single page; sections are switched with a bit of internal
-state and reflected in the URL hash (e.g. `#museum`), so refreshing the page
-never breaks the experience and you can share a direct link to any section.
+These are **future ideas**, not claims about functionality already implemented.
 
-## Notes
+---
 
-- No analytics, no external APIs, no login. It's a static site.
-- Respects "reduce motion" settings automatically; you can also force a
-  calmer version for everyone via `settings.reducedParticles`.
-- The hidden Easter egg: click the small, faint star in the bottom-left
-  corner five times.
+## License
+
+Personal / private project.
+
+The source structure is shared for reference and experimentation; personal content and media should be replaced with your own when creating another version.
+
+---
+
+<div align="center">
+
+### Made as a place to keep the little things that matter.
+
+**The Little Universe I Made for You** · React + Vite
+
+</div>

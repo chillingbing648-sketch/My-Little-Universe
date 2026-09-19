@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 620" role="img" aria-labelledby="t d">
+  <title id="t">The Little Universe technology stack</title>
+  <desc id="d">Technology stack overview showing React, Vite, JavaScript, CSS, HTML, Google Fonts, GitHub Actions and GitHub Pages.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#11182a"/>
+      <stop offset=".5" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#080a12"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b7aed6" stop-opacity=".05"/>
+      <stop offset=".5" stop-color="#f2c883" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#e3b3ae" stop-opacity=".05"/>
+    </linearGradient>
+    <radialGradient id="orb">
+      <stop offset="0" stop-color="#ffe3ad" stop-opacity=".9"/>
+      <stop offset=".25" stop-color="#f2c883" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#f2c883" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="24"/></filter>
+    <style>
+      .s{font-family:Inter,Sora,system-ui,-apple-system,Segoe UI,sans-serif}
+      .serif{font-family:Georgia,"Times New Roman",serif}
+      .k{font-size:12px;letter-spacing:2.2px;fill:#7b839a}
+      .name{font-size:22px;font-weight:600;fill:#e9ebf2}
+      .role{font-size:13px;fill:#9aa1b8}
+      .card{fill:#11172a;fill-opacity:.76;stroke:#e9ebf2;stroke-opacity:.09}
+    </style>
+  </defs>
+  <rect width="1500" height="620" rx="34" fill="url(#bg)"/>
+  <circle cx="1240" cy="100" r="250" fill="#e3b3ae" fill-opacity=".06" filter="url(#blur)"/>
+  <circle cx="250" cy="510" r="280" fill="#b7aed6" fill-opacity=".06" filter="url(#blur)"/>
+  <circle cx="750" cy="310" r="230" fill="url(#orb)" opacity=".16" filter="url(#blur)"/>
+
+  <text x="86" y="82" class="s k">ENGINEERING STACK</text>
+  <text x="86" y="126" class="serif" font-size="42" fill="#e9ebf2">Simple technology. Crafted experience.</text>
+  <text x="86" y="158" class="s role">A lightweight React architecture with a Vite toolchain and static GitHub deployment.</text>
+
+  <path d="M175 280 C410 190 575 220 750 310 C930 400 1095 370 1320 270" fill="none" stroke="url(#line)" stroke-width="2"/>
+
+  <g transform="translate(85 208)">
+    <rect class="card" width="270" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#61dafb" fill-opacity=".10"/>
+    <circle cx="38" cy="42" r="7" fill="#61dafb"/>
+    <text x="76" y="42" class="s name">React 18</text>
+    <text x="28" y="83" class="s role">Component architecture</text>
+    <text x="28" y="104" class="s role">UI + interaction state</text>
+  </g>
+
+  <g transform="translate(365 165)">
+    <rect class="card" width="270" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#646cff" fill-opacity=".14"/>
+    <circle cx="38" cy="42" r="7" fill="#8f96ff"/>
+    <text x="76" y="42" class="s name">Vite 5</text>
+    <text x="28" y="83" class="s role">Fast local development</text>
+    <text x="28" y="104" class="s role">Production bundling</text>
+  </g>
+
+  <g transform="translate(645 245)">
+    <rect class="card" width="270" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#f7df1e" fill-opacity=".11"/>
+    <circle cx="38" cy="42" r="7" fill="#f7df1e"/>
+    <text x="76" y="42" class="s name">JavaScript</text>
+    <text x="28" y="83" class="s role">Application logic</text>
+    <text x="28" y="104" class="s role">ES module structure</text>
+  </g>
+
+  <g transform="translate(925 165)">
+    <rect class="card" width="270" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#1572b6" fill-opacity=".14"/>
+    <circle cx="38" cy="42" r="7" fill="#4da3df"/>
+    <text x="76" y="42" class="s name">CSS3</text>
+    <text x="28" y="83" class="s role">Visual system</text>
+    <text x="28" y="104" class="s role">Motion + responsive layout</text>
+  </g>
+
+  <g transform="translate(1205 205)">
+    <rect class="card" width="210" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#e9ebf2" fill-opacity=".08"/>
+    <circle cx="38" cy="42" r="7" fill="#e9ebf2"/>
+    <text x="76" y="42" class="s name">HTML5</text>
+    <text x="28" y="83" class="s role">Document shell</text>
+    <text x="28" y="104" class="s role">Semantic structure</text>
+  </g>
+
+  <g transform="translate(180 418)">
+    <rect class="card" width="270" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#4285f4" fill-opacity=".12"/>
+    <circle cx="38" cy="42" r="7" fill="#8ab4ff"/>
+    <text x="76" y="42" class="s name">Google Fonts</text>
+    <text x="28" y="83" class="s role">Sora + Fraunces</text>
+    <text x="28" y="104" class="s role">Editorial type pairing</text>
+  </g>
+
+  <g transform="translate(515 433)">
+    <rect class="card" width="270" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#24292f" fill-opacity=".7"/>
+    <circle cx="38" cy="42" r="7" fill="#ffffff"/>
+    <text x="76" y="42" class="s name">GitHub Actions</text>
+    <text x="28" y="83" class="s role">CI build pipeline</text>
+    <text x="28" y="104" class="s role">Fresh production artifact</text>
+  </g>
+
+  <g transform="translate(850 418)">
+    <rect class="card" width="270" height="135" rx="22"/>
+    <circle cx="38" cy="42" r="24" fill="#ffffff" fill-opacity=".07"/>
+    <circle cx="38" cy="42" r="7" fill="#ffffff"/>
+    <text x="76" y="42" class="s name">GitHub Pages</text>
+    <text x="28" y="83" class="s role">Static hosting</text>
+    <text x="28" y="104" class="s role">Repository deployment</text>
+  </g>
+
+  <text x="1225" y="505" class="s k">STATIC · REACT · VITE</text>
+</svg>

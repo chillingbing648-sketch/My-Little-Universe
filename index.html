@@ -14,9 +14,29 @@
       href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // GitHub Pages branch fallback:
+      // raw repository source cannot execute JSX directly, so it redirects to
+      // the committed production build under ./dist/. Vite replaces the
+      // deployment marker during the real production build, disabling this
+      // fallback in the generated Pages artifact.
+      (function () {
+        var mode = '%VITE_DEPLOYMENT_MODE%';
+        var onGitHubPages = window.location.hostname.endsWith('.github.io');
+        var path = window.location.pathname;
+        var onThisRepository =
+          path === '/My-Little-Universe' ||
+          path.indexOf('/My-Little-Universe/') === 0;
+
+        if (onGitHubPages && onThisRepository && mode !== 'production') {
+          var base = path.endsWith('/') ? path : path + '/';
+          window.location.replace(base + 'dist/');
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

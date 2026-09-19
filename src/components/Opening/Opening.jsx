@@ -3,7 +3,7 @@ import StarField from '../UI/StarField'
 import { giftData } from '../../data/giftData'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
-const STAGE_DELAYS_MS = [400, 1400, 2600, 3600]
+const STAGE_DELAYS_MS = [400, 1200, 2200, 3200, 4000]
 
 export default function Opening({ onEnter }) {
   const reduced = useReducedMotion()
@@ -40,6 +40,12 @@ export default function Opening({ onEnter }) {
     >
       <StarField density={1.1} respondToPointer={!reduced} />
 
+      {/* Decorative horizon light — a soft band across the middle distance */}
+      <div className="opening__horizon" aria-hidden="true" />
+
+      {/* Ambient nebula glow — responds to stage for reveal timing */}
+      <div className={`opening__nebula ${stage >= 1 ? 'is-visible' : ''}`} aria-hidden="true" />
+
       <div
         ref={starRef}
         className={`opening__you-star ${stage >= 2 ? 'is-visible' : ''}`}
@@ -50,7 +56,12 @@ export default function Opening({ onEnter }) {
       </div>
 
       <div className="screen__inner opening__copy">
-        <p className={`heading-xl opening__line ${stage >= 1 ? 'is-visible' : ''}`}>
+        {/* Eyebrow — a tiny light-point + whispered label above the title */}
+        <span className={`opening__eyebrow opening__line ${stage >= 1 ? 'is-visible' : ''}`}>
+          ✦
+        </span>
+
+        <p className={`heading-xl opening__line opening__title ${stage >= 2 ? 'is-visible' : ''}`}>
           {giftData.opening.line1}
         </p>
         <p className={`body-text opening__line opening__subline ${stage >= 3 ? 'is-visible' : ''}`}>
@@ -65,6 +76,11 @@ export default function Opening({ onEnter }) {
         >
           {giftData.opening.enterLabel} <span aria-hidden="true">→</span>
         </button>
+
+        {/* Scroll / explore cue — a gentle visual invitation */}
+        <div className={`opening__cue ${stage >= 5 ? 'is-visible' : ''}`} aria-hidden="true">
+          <span className="opening__cue-dot" />
+        </div>
       </div>
     </div>
   )

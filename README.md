@@ -322,51 +322,157 @@ npm run preview
 
 ---
 
-## Deployment
+## ✦ How It Ships
 
-The repository is deployed through **GitHub Actions → GitHub Pages**.
-
-```text
-main
- ↓
-GitHub Actions
- ↓
-npm ci
- ↓
-npm run build
- ↓
-fresh dist/
- ↓
-GitHub Pages
-```
-
-The generated `dist/` directory is intentionally **not committed** to the repository. It is produced fresh by CI for each deployment.
-
-Deployment workflow:
+The repository follows a deliberately simple production loop:
 
 ```text
-.github/workflows/deploy.yml
+        WRITE
+          │
+          ▼
+      `main`
+          │
+          ▼
+   GitHub Actions
+          │
+     npm ci + build
+          │
+          ▼
+     fresh `dist/`
+          │
+          ▼
+    GitHub Pages
 ```
+
+The generated build is created by CI and is **not stored in source control**. This keeps the repository focused on the source that actually defines the experience.
+
+` .github/workflows/deploy.yml `
 
 ---
 
-## Project Structure
+## ◇ Inside the Build
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### Content is separated from presentation
+
+The personal layer lives in:
+
+`src/data/giftData.js`
+
+Names, writing, memories, songs, quiz content, future plans, surprises, media references, and experience settings can be changed without rebuilding the component architecture.
+
+</td>
+<td width="50%" valign="top">
+
+### The interface is built as a system
+
+The experience is divided into focused React areas rather than one oversized component.
+
+Shared navigation, transitions, music controls, photo viewing, routing behavior, and reusable hooks sit beside the individual destinations.
+
+</td>
+</tr>
+</table>
+
+---
+
+## ✧ Design Principles
+
+This project is guided by a few simple rules:
+
+> **Make the interface feel like a place, not a dashboard.**
+
+> **Use motion to reveal meaning, not to fill empty space.**
+
+> **Let typography and spacing create emotion before effects do.**
+
+> **Keep the implementation lighter than the experience it creates.**
+
+The result is intentionally somewhere between a digital keepsake, an interactive story, and a tiny personal universe.
+
+---
+
+## ✦ Experience Map
+
+```text
+OPENING
+   │
+   ▼
+UNIVERSE
+   ├── The Beginning
+   ├── Memory Museum
+   ├── Things Unsaid
+   ├── A Letter
+   ├── Open When...
+   ├── The Quiz
+   ├── Soundtrack
+   ├── Surprise Me
+   ├── The Future
+   └── Final Reveal
+```
+
+Each destination is a different interaction with the same underlying story.
+
+---
+
+## ⚙ Engineering Details
+
+| Area | Approach |
+|---|---|
+| Routing | Lightweight hash-based navigation |
+| UI Architecture | Focused React components + shared UI |
+| Content | Centralized data-driven configuration |
+| Styling | Global design tokens + section-specific CSS |
+| Motion | CSS transitions / keyframes with reduced-motion handling |
+| Media | Local files under `public/` |
+| Deployment | GitHub Actions → GitHub Pages |
+| Build Output | Generated CI artifact, not committed |
+
+---
+
+## ◌ Project Structure
 
 ```text
 .
-├── .github/workflows/deploy.yml
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
 ├── public/
 │   ├── memories/
 │   ├── photos/
 │   ├── music/
 │   └── icons/
+│
 ├── src/
 │   ├── components/
+│   │   ├── Opening/
+│   │   ├── Universe/
+│   │   ├── Timeline/
+│   │   ├── MemoryMuseum/
+│   │   ├── Unsaid/
+│   │   ├── Letter/
+│   │   ├── OpenWhen/
+│   │   ├── Quiz/
+│   │   ├── Soundtrack/
+│   │   ├── Surprise/
+│   │   ├── Future/
+│   │   ├── FinalReveal/
+│   │   ├── Navigation/
+│   │   ├── PhotoViewer/
+│   │   └── UI/
 │   ├── data/
+│   │   └── giftData.js
 │   ├── hooks/
 │   ├── styles/
+│   │   ├── global.css
+│   │   └── sections.css
 │   ├── App.jsx
 │   └── main.jsx
+│
 ├── index.html
 ├── package.json
 ├── vite.config.js
@@ -375,48 +481,78 @@ Deployment workflow:
 
 ---
 
-## Engineering Notes
+## ♢ Personalization
 
-**Hash navigation** keeps the experience inside a single-page runtime while still allowing direct section URLs.
-
-**Content/data separation** keeps personal writing and media references in one place, reducing the need to modify presentation code.
-
-**Graceful media handling** prevents a missing image or audio file from breaking the overall experience.
-
-**Reduced-motion support** respects the visitor's system preference and the project's own particle setting.
-
-**Responsive visual complexity** lets the desktop universe carry the richer constellation treatment while the mobile layout switches to a simpler section list.
-
----
-
-## Accessibility & UX
-
-The project includes:
-
-- keyboard-focus states for interactive controls
-- semantic buttons for interaction
-- minimum touch-friendly control sizes
-- responsive mobile navigation
-- reduced-motion handling
-- visible state changes for active, selected, and playing elements
-
----
-
-## Roadmap
-
-The current repository is intentionally focused on the core static experience.
-
-Potential future additions can live here without changing the central structure:
+The intended editing surface is small.
 
 ```text
-• richer personal media
-• more memory exhibits
-• additional Open When letters
-• expanded soundtrack collection
-• more interactive hidden details
+src/data/giftData.js
+        │
+        ├── names
+        ├── memories
+        ├── letter
+        ├── open-when messages
+        ├── quiz
+        ├── soundtrack
+        ├── future plans
+        ├── surprises
+        ├── final reveal
+        └── settings
 ```
 
-These are **future ideas**, not claims about functionality already implemented.
+Add photographs, covers, and audio under `public/`, then reference them from the data file.
+
+---
+
+## ⌁ Run It
+
+Requires Node.js 18+.
+
+```bash
+npm install
+npm run dev
+```
+
+Production check:
+
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## ◇ Roadmap
+
+The roadmap stays intentionally small and experience-focused:
+
+```text
+01  More personal memories
+02  More visual keepsakes
+03  More hidden interactions
+04  More soundtrack moments
+05  More reasons to return
+```
+
+These are future directions, not currently implemented features.
+
+---
+
+## Privacy
+
+This project is designed as a static experience.
+
+There is currently:
+
+```text
+No backend
+No database
+No authentication
+No account system
+No analytics layer
+```
+
+The personal story remains inside the project and its deployed static assets.
 
 ---
 
@@ -424,14 +560,26 @@ These are **future ideas**, not claims about functionality already implemented.
 
 Personal / private project.
 
-The source structure is shared for reference and experimentation; personal content and media should be replaced with your own when creating another version.
+The code structure may be used as a reference for experimentation, but personal writing, photographs, music, and other media should be replaced with content you have permission to use.
 
 ---
 
 <div align="center">
 
-### Made as a place to keep the little things that matter.
+### Built like software. Kept like a memory.
 
-**The Little Universe I Made for You** · React + Vite
+A small React experience for the moments that deserve a place of their own.
+
+<br>
+
+**The Little Universe I Made for You**
+
+<sub>React 18 · Vite 5 · JavaScript · CSS3 · GitHub Actions · GitHub Pages</sub>
+
+<br><br>
+
+<a href="https://chillingbing648-sketch.github.io/My-Little-Universe/">Enter the Universe ↗</a>
+&nbsp;&nbsp;·&nbsp;&nbsp;
+<a href="https://github.com/chillingbing648-sketch/My-Little-Universe">Explore the Source ↗</a>
 
 </div>

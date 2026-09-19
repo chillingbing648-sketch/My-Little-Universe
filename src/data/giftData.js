@@ -126,7 +126,7 @@ export const giftData = {
       'Close with whatever is true right now.',
     ],
     signOff: 'With love,',
-    sender: 'YOUR_NAME',
+    sender: 'Harshit',
   },
 
   // ---- Open When... letters ------------------------------------------------
@@ -161,7 +161,7 @@ export const giftData = {
       title: 'Open on your birthday',
       unlockDate: '2026-10-13',
       lockedMessage: "This one is waiting for the right day.",
-      content: 'Your birthday message, ready for when the date arrives.',
+      content: 'Happy Birthday My Cutie Pie.',
     },
     {
       title: "Open when we're far apart",

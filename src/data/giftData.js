@@ -10,7 +10,7 @@
 //
 // Photos go in:      public/memories/  and  public/photos/
 // Music goes in:      public/music/
-// Reference a file as "/memories/your-file.jpg" (the leading slash matters).
+// Reference a file as "./memories/your-file.jpg" (the leading slash matters).
 // If a photo or song file doesn't exist yet, the site will not crash — it
 // will just show a soft placeholder or hide that control.
 // ============================================================================
@@ -47,7 +47,7 @@ export const giftData = {
   // ---- Background music ---------------------------------------------------
   music: {
     enabled: true,
-    src: '/music/our-song.mp3',
+    src: './music/our-song.mp3',
     title: 'Our Song',
     artist: 'REPLACE_ARTIST',
   },
@@ -60,7 +60,7 @@ export const giftData = {
       title: 'The Beginning',
       description:
         "Write about how you met, or the first time you really noticed each other. Keep it specific — one small detail says more than a paragraph of adjectives.",
-      image: '/memories/memory-01.jpg',
+      image: './memories/memory-01.jpg',
       location: '',
       song: '',
     },
@@ -68,7 +68,7 @@ export const giftData = {
       date: 'DATE',
       title: 'A DAY THAT MATTERED',
       description: 'Replace this with something only the two of you would recognize.',
-      image: '/memories/memory-02.jpg',
+      image: './memories/memory-02.jpg',
       location: '',
       song: '',
     },
@@ -76,7 +76,7 @@ export const giftData = {
       date: 'DATE',
       title: 'ANOTHER MOMENT',
       description: "Add as many of these as you want, or delete this one entirely.",
-      image: '/memories/memory-03.jpg',
+      image: './memories/memory-03.jpg',
       location: '',
       song: '',
     },
@@ -89,7 +89,7 @@ export const giftData = {
       title: 'The day we ______',
       date: '12 August 2025',
       story: 'Write the story here. What happened, what it felt like, why it stuck.',
-      image: '/memories/exhibit-01.jpg',
+      image: './memories/exhibit-01.jpg',
       location: '',
       song: '',
       mood: '',
@@ -99,7 +99,7 @@ export const giftData = {
       title: 'REPLACE THIS TITLE',
       date: 'DATE',
       story: 'Another exhibit. Delete or duplicate this block as needed.',
-      image: '/memories/exhibit-02.jpg',
+      image: './memories/exhibit-02.jpg',
       location: '',
       song: '',
       mood: '',
@@ -215,7 +215,7 @@ export const giftData = {
     {
       title: 'SONG TITLE',
       artist: 'ARTIST',
-      cover: '/photos/song-01.jpg',
+      cover: './photos/song-01.jpg',
       why: 'Why this one reminds you of her.',
       src: '',
       link: '',
@@ -223,7 +223,7 @@ export const giftData = {
     {
       title: 'SONG TITLE',
       artist: 'ARTIST',
-      cover: '/photos/song-02.jpg',
+      cover: './photos/song-02.jpg',
       why: 'Why this one reminds you of her.',
       src: '',
       link: '',
@@ -264,7 +264,7 @@ export const giftData = {
     line1: 'If you ever wonder how much of you exists in my life...',
     line2: '...the answer is probably somewhere in this little universe.',
     line3: 'You are my favourite part of it.',
-    image: '/memories/final.jpg',
+    image: './memories/final.jpg',
   },
 
   // ---- Secret Easter egg (click the small star 5 times) -----------------------

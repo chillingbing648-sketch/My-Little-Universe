@@ -5,33 +5,79 @@
 **A cinematic, interactive digital gift — built as a small universe of memories, words, music, and moments.**
 
 <p>
-  <a href="https://chillingbing648-sketch.github.io/My-Little-Universe/">Live Experience</a>
-  ·
-  <a href="https://github.com/chillingbing648-sketch/My-Little-Universe">Source</a>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white" alt="React 18">
+  <img src="https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 5">
+  <img src="https://img.shields.io/badge/JavaScript-ES%20Modules-F7DF1E?style=flat-square&logo=javascript&logoColor=111111" alt="JavaScript">
+  <img src="https://img.shields.io/badge/CSS3-Cinematic_UI-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/GitHub_Actions-CI-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions">
+  <img src="https://img.shields.io/badge/GitHub_Pages-Deployment-222222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
+</p>
+
+<p>
+  <a href="https://chillingbing648-sketch.github.io/My-Little-Universe/">✦ Live Experience</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/chillingbing648-sketch/My-Little-Universe">⌘ Source</a>
 </p>
 
 </div>
 
 ---
 
-## ✦ Tech Stack
+## ✦ Technology at a Glance
 
-<p>
-  <img alt="React" src="https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-  <img alt="Vite" src="https://img.shields.io/badge/Vite_5-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF">
-  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-0B0F1A?style=for-the-badge&logo=javascript&logoColor=F7DF1E">
-  <img alt="CSS3" src="https://img.shields.io/badge/CSS3-0B0F1A?style=for-the-badge&logo=css3&logoColor=1572B6">
-  <img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub_Pages-0B0F1A?style=for-the-badge&logo=github&logoColor=FFFFFF">
+<p align="center">
+  <img src="./assets/tech-stack.svg" alt="Technology stack overview for The Little Universe" width="1100">
 </p>
 
-## ✧ Features
+<table align="center">
+<tr>
+<td align="center"><b>Frontend</b><br>React 18 · React DOM</td>
+<td align="center"><b>Build</b><br>Vite 5</td>
+<td align="center"><b>Language</b><br>JavaScript</td>
+<td align="center"><b>Styling</b><br>CSS3</td>
+</tr>
+<tr>
+<td align="center"><b>Typography</b><br>Sora · Fraunces</td>
+<td align="center"><b>Markup</b><br>HTML5</td>
+<td align="center"><b>CI</b><br>GitHub Actions</td>
+<td align="center"><b>Hosting</b><br>GitHub Pages</td>
+</tr>
+</table>
 
-- **11 interactive destinations** connected through a constellation-style universe.
-- **Cinematic transitions** between sections with layered atmosphere and motion.
-- **Memory-led storytelling** across timelines, exhibits, letters, surprises, music, and future plans.
-- **Single-file personalization** through `src/data/giftData.js`.
-- **Responsive interaction design** with mobile navigation and reduced-motion support.
-- **Static architecture** with no backend, account system, or database.
+---
+
+## ✧ What the Experience Includes
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### Cosmic Navigation
+A constellation-style **Universe** acts as the main map, connecting the experience's destinations through interactive stars, layered atmosphere, and section transitions.
+
+### Memory Storytelling
+The experience moves through **The Beginning**, **Memory Museum**, **Things Unsaid**, **A Letter**, and **Final Reveal** — giving different memories different visual treatments.
+
+### Personal Interactions
+**Open When...**, **The Quiz**, **Soundtrack**, **Surprise Me**, and **The Future** introduce lightweight interactions beyond reading.
+
+</td>
+<td width="50%" valign="top">
+
+### Content-First Personalization
+Names, memories, writing, media references, quiz content, songs, future plans, surprises, and settings are centralized in:
+
+`src/data/giftData.js`
+
+### Responsive Experience
+Desktop and mobile layouts use different presentation strategies where appropriate, with mobile navigation and reduced-motion support built into the interface.
+
+### Static by Design
+There is no server-side application layer, account system, database, or backend requirement. The project builds to a static production site.
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -41,7 +87,7 @@
   <img src="./assets/sections-preview.svg" alt="The Little Universe sections interface preview" width="1100">
 </p>
 
-<p align="center"><sub>The newest sections experience — a constellation map for navigating every part of the gift.</sub></p>
+<p align="center"><sub>The latest Universe / sections experience — the navigation layer for the entire gift.</sub></p>
 
 ---
 
@@ -126,7 +172,7 @@ React App
     └── icons/
 ```
 
-### Runtime flow
+### Runtime Flow
 
 ```text
 Opening
@@ -172,7 +218,7 @@ That file contains the configurable content for:
 
 You normally should not need to edit the components to personalize the experience.
 
-### Add media
+### Add Media
 
 Place files in:
 
@@ -203,9 +249,7 @@ npm install
 npm run dev
 ```
 
-Open the local Vite URL shown in the terminal.
-
-For a production build:
+For a production check:
 
 ```bash
 npm run build

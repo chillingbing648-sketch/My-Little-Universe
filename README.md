@@ -332,6 +332,41 @@ The design avoids treating every section as the same card grid. Each destination
 
 ---
 
+
+## 🧭 Developer Map
+
+When working on the project, these are the files that matter first:
+
+| File | Responsibility |
+|---|---|
+| `src/App.jsx` | Application shell, section registry, route-driven rendering, shared experience UI |
+| `src/data/giftData.js` | Personal content, media references, settings, quiz data, future plans, surprises |
+| `src/hooks/useHashRoute.js` | Lightweight hash navigation |
+| `src/hooks/useReducedMotion.js` | Motion preference handling |
+| `src/components/Universe/Universe.jsx` | Constellation navigation field and destination selection |
+| `src/components/UI/` | Cross-section controls such as music, transitions, and Easter eggs |
+| `src/styles/` | Global tokens, atmosphere, layout, responsive behavior, and section styling |
+| `.github/workflows/deploy.yml` | Production build verification and GitHub Pages deployment |
+
+A useful rule for future changes:
+
+```text
+Changing the story?
+→ edit giftData.js
+
+Changing navigation?
+→ inspect App.jsx / useHashRoute.js
+
+Changing motion behavior?
+→ inspect useReducedMotion.js + section styles
+
+Changing the Universe?
+→ inspect Universe.jsx + its styles
+
+Changing deployment?
+→ inspect deploy.yml + vite.config.js
+```
+
 ## 🧩 Project Structure
 
 ```text

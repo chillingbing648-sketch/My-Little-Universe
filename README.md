@@ -1,31 +1,60 @@
+
 <div align="center">
 
-# The Little Universe I Made for You
+# ✦ The Little Universe I Made for You
 
-**A cinematic, interactive digital gift — built as a small universe of memories, words, music, and moments.**
+### A private, cinematic web experience made from memories, letters, music, and little things worth keeping.
+
+<p>
+  <a href="https://chillingbing648-sketch.github.io/My-Little-Universe/"><strong>✦ Enter the Universe</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://github.com/chillingbing648-sketch/My-Little-Universe">⌘ Explore the Source</a>
+</p>
 
 <p>
   <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white" alt="React 18">
   <img src="https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 5">
   <img src="https://img.shields.io/badge/JavaScript-ES%20Modules-F7DF1E?style=flat-square&logo=javascript&logoColor=111111" alt="JavaScript">
   <img src="https://img.shields.io/badge/CSS3-Cinematic_UI-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
-  <img src="https://img.shields.io/badge/GitHub_Actions-CI-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions">
-  <img src="https://img.shields.io/badge/GitHub_Pages-Deployment-222222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
-</p>
-
-<p>
-  <a href="https://chillingbing648-sketch.github.io/My-Little-Universe/">✦ Live Experience</a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/chillingbing648-sketch/My-Little-Universe">⌘ Source</a>
+  <img src="https://img.shields.io/badge/Static_Site-Private%20Experience-111827?style=flat-square" alt="Static site">
+  <img src="https://img.shields.io/badge/GitHub_Actions-Deploy-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions">
 </p>
 
 </div>
 
 ---
 
-## ✦ Technology at a Glance
+## ◇ The Idea
 
-The stack is intentionally lightweight: **React** handles the experience layer, **Vite** handles development and production bundling, and **CSS** carries the visual language, responsive behavior, motion, and atmosphere.
+**The Little Universe** is not built like a conventional website.
+
+It is a single-page, section-based experience where navigation becomes part of the story. A visitor enters through an opening moment, reaches a constellation-like **Universe**, and moves between memories, letters, music, small interactions, and a final reveal.
+
+The goal is simple:
+
+> **Make a website feel like a place someone can wander through.**
+
+---
+
+## ✦ What Lives Inside
+
+| Destination | Experience |
+|---|---|
+| **Universe** | Constellation-style navigation for the entire experience |
+| **The Beginning** | A chronological memory timeline |
+| **Memory Museum** | Exhibit-style memories with photo viewing |
+| **Things I Don't Say Enough** | Short, personal thoughts revealed as interactive cards |
+| **A Letter For You** | A paper-inspired reading experience |
+| **Open When…** | Unlockable letters with optional date locks |
+| **How Well Do You Know Us** | A lightweight shared-memory quiz |
+| **Our Soundtrack** | Songs, artwork, context, and optional playback |
+| **Surprise Me** | Small randomized messages and memories |
+| **The Future** | Things to do and places not reached yet |
+| **One Last Thing** | The closing reveal |
+
+---
+
+## ⚙ Technology at a Glance
 
 <table>
 <tr>
@@ -35,25 +64,25 @@ The stack is intentionally lightweight: **React** handles the experience layer, 
 **React 18**  
 React DOM
 
-Component-driven architecture for the individual sections, shared UI, navigation, overlays, and interactive states.
+Focused section components, shared UI, lightweight route handling, transitions, overlays, and interactive states.
 
 </td>
 <td width="25%" valign="top">
 
-### ⚡ Tooling
+### ⚡ Build
 **Vite 5**  
 Node.js · npm
 
-Fast development server and production build pipeline with a minimal dependency footprint.
+Simple local development and production bundling with a deliberately small dependency surface.
 
 </td>
 <td width="25%" valign="top">
 
 ### ◇ Interface
-**JavaScript**  
-HTML5 · CSS3
+**JavaScript + CSS3**  
+HTML5 · SVG
 
-ES modules, semantic markup, responsive layouts, layered visual effects, transitions, and custom interaction styling.
+Custom layouts, responsive behavior, motion, constellation graphics, typography, atmospheric layers, and interaction styling.
 
 </td>
 <td width="25%" valign="top">
@@ -62,7 +91,7 @@ ES modules, semantic markup, responsive layouts, layered visual effects, transit
 **GitHub Actions**  
 GitHub Pages
 
-Every production deployment is built from `main` and published as a fresh static artifact.
+The production site is built in CI from source and deployed as a static artifact.
 
 </td>
 </tr>
@@ -73,226 +102,199 @@ Every production deployment is built from `main` and published as a fresh static
 ```text
 React 18
 ├── React DOM
-├── Component-based sections
-└── Hash-based navigation
+├── Section components
+├── Shared UI
+└── Contextual interactions
 
 Vite 5
-├── Development server
-├── Production bundling
-└── Static build output
+├── Dev server
+└── Production build
 
-JavaScript + HTML5 + CSS3
-├── Interaction logic
-├── Responsive presentation
-├── Motion + transitions
-└── Visual design system
+JavaScript
+├── Hash navigation
+├── Experience logic
+└── Data-driven content
+
+CSS3 + SVG
+├── Design system
+├── Motion
+├── Atmospheric visuals
+└── Constellation interface
 
 Google Fonts
 ├── Sora
 └── Fraunces
 
 GitHub Actions
-└── Automated production build
-
-GitHub Pages
-└── Static hosting
+└── Build + Pages deployment
 ```
 
-### Why this stack?
-
-**Small footprint.** The project does not need a backend, database, authentication layer, or large framework surface to deliver the experience.
-
-**Component separation.** Each destination is isolated into its own React component area, while shared behaviors live in reusable hooks and UI components.
-
-**Design-first CSS.** The visual identity is driven through a centralized design system plus section-specific styling rather than a heavy UI framework.
-
-**Deployment-ready by default.** The repository builds a fresh production bundle through GitHub Actions instead of storing generated `dist/` files in source control.
-
 ---
 
-## ✧ What the Experience Includes
+## ♢ Why the Architecture Stays Lightweight
 
-<table>
-<tr>
-<td width="50%" valign="top">
+This project deliberately avoids a backend, database, account system, or application framework beyond React.
 
-### Cosmic Navigation
-A constellation-style **Universe** acts as the main map, connecting the experience's destinations through interactive stars, layered atmosphere, and section transitions.
+That is intentional.
 
-### Memory Storytelling
-The experience moves through **The Beginning**, **Memory Museum**, **Things Unsaid**, **A Letter**, and **Final Reveal** — giving different memories different visual treatments.
-
-### Personal Interactions
-**Open When...**, **The Quiz**, **Soundtrack**, **Surprise Me**, and **The Future** introduce lightweight interactions beyond reading.
-
-</td>
-<td width="50%" valign="top">
-
-### Content-First Personalization
-Names, memories, writing, media references, quiz content, songs, future plans, surprises, and settings are centralized in:
-
-`src/data/giftData.js`
-
-### Responsive Experience
-Desktop and mobile layouts use different presentation strategies where appropriate, with mobile navigation and reduced-motion support built into the interface.
-
-### Static by Design
-There is no server-side application layer, account system, database, or backend requirement. The project builds to a static production site.
-
-</td>
-</tr>
-</table>
-
----
-
-## Preview
-
-<p align="center">
-  <img src="./assets/sections-preview.svg" alt="The Little Universe sections interface preview" width="1100">
-</p>
-
-<p align="center"><sub>The latest Universe / sections experience — the navigation layer for the entire gift.</sub></p>
-
----
-
-## The Concept
-
-**The Little Universe** is designed as a single-page digital experience rather than a conventional website.
-
-The opening presents the gift as a private space. From there, the visitor enters a constellation of destinations, where each star leads to a different kind of memory or interaction.
-
-### Experience Map
-
-| Destination | Purpose |
-|---|---|
-| **Universe** | Interactive constellation map and section navigation |
-| **The Beginning** | Chronological memory timeline |
-| **Memory Museum** | Exhibit-style memories with photo viewing |
-| **Things Unsaid** | Small thoughts revealed through interactive cards |
-| **A Letter** | A paper-style personal letter |
-| **Open When...** | Conditional letters with optional date locks |
-| **The Quiz** | A lightweight shared-memory quiz |
-| **Soundtrack** | Songs, covers, explanations, and optional playback |
-| **Surprise Me** | Randomized little messages and memories |
-| **The Future** | Things to do, plus abstract destinations |
-| **Final Reveal** | Closing message and final memory |
-
----
-
-## Design Direction
-
-The interface is built around a **warm midnight / starlight** visual language:
-
-- deep midnight backgrounds instead of pure black
-- restrained gold, blush, and lavender accents
-- editorial serif typography paired with a modern sans-serif UI
-- soft panels, paper textures, halos, and constellation lines
-- motion used as storytelling rather than decoration
-
-The aim is to make navigation feel like **moving through a place**, not clicking through a collection of pages.
-
----
-
-## Architecture
+The experience is primarily **content + interaction + presentation**, so the implementation keeps those concerns close to the browser:
 
 ```text
-React App
-│
-├── App.jsx
-│   └── Hash-based section routing
-│
-├── components/
-│   ├── Opening/
-│   ├── Universe/
-│   ├── Timeline/
-│   ├── MemoryMuseum/
-│   ├── Unsaid/
-│   ├── Letter/
-│   ├── OpenWhen/
-│   ├── Quiz/
-│   ├── Soundtrack/
-│   ├── Surprise/
-│   ├── Future/
-│   ├── FinalReveal/
-│   ├── Navigation/
-│   ├── PhotoViewer/
-│   └── UI/
-│
-├── data/
-│   └── giftData.js
-│       └── Content + settings
-│
-├── hooks/
-│   └── Reusable interaction behavior
-│
-├── styles/
-│   ├── global.css
-│   └── sections.css
-│
-└── public/
-    ├── memories/
-    ├── photos/
-    ├── music/
-    └── icons/
+Content
+  ↓
+giftData.js
+  ↓
+React Sections
+  ↓
+Shared Navigation / Transitions
+  ↓
+Static Vite Build
+  ↓
+GitHub Pages
 ```
 
-### Runtime Flow
+The result is easy to deploy, easy to personalize, and small enough to understand without introducing infrastructure that the experience does not need.
+
+---
+
+## 🌌 Experience Architecture
+
+```text
+                         THE LITTLE UNIVERSE
+                                 │
+                         ┌───────┴────────┐
+                         │   React App    │
+                         └───────┬────────┘
+                                 │
+                 ┌───────────────┼───────────────┐
+                 │               │               │
+                 ▼               ▼               ▼
+             Opening         Universe        Shared UI
+                                 │
+                                 ▼
+                         Hash-based route
+                                 │
+                                 ▼
+                        Section component
+                                 │
+                 ┌───────────────┼───────────────┐
+                 │               │               │
+                 ▼               ▼               ▼
+             Content          Motion          Media
+             + State        + Transition      + Audio
+                 │               │               │
+                 └───────────────┼───────────────┘
+                                 ▼
+                          Static experience
+```
+
+### Runtime flow
 
 ```text
 Opening
    ↓
+Enter
+   ↓
 Universe
    ↓
-Hash route
+Select a destination
    ↓
-Section component
+Short section transition
    ↓
-Shared navigation + transitions + music + Easter eggs
+Destination loads
+   ↓
+Explore / return / wander
 ```
 
-There is no server-side application layer. The experience is delivered as a static React build.
+The application uses a lightweight hash route instead of a full router. The current route is reflected in the URL and the corresponding section is rendered by `App.jsx`.
 
 ---
 
-## Personalize It
+## ✧ The Universe Navigation
 
-The project intentionally keeps personal content separate from presentation code.
+The **Universe** is the experience's central map.
 
-Edit:
+It currently renders ten destination nodes connected by a decorative constellation path. On larger screens, the nodes occupy the field spatially; on smaller screens, the layout becomes a simpler vertical navigation list.
+
+Interaction behavior is deliberately restrained:
+
+- nodes gently float when motion is allowed
+- selecting a node briefly highlights the destination
+- other nodes visually recede during the transition
+- reduced-motion preferences remove drifting and decorative animation
+- touch-friendly controls preserve access to the same destinations
+
+The lines are **visual storytelling**, not a data graph. The route itself remains deterministic.
+
+---
+
+## 🎞️ Motion With Purpose
+
+Motion is used as part of the storytelling system rather than as background noise.
+
+```text
+Entrance
+  → reveal
+
+Selection
+  → focus
+
+Transition
+  → movement
+
+Section
+  → settle
+
+Reduced motion
+  → preserve structure, remove drift
+```
+
+The experience respects `prefers-reduced-motion`, and the settings layer can reduce particle/background motion independently for lower-powered devices.
+
+---
+
+## ♢ Content Is Separated From Presentation
+
+The main personalization surface is:
 
 ```text
 src/data/giftData.js
 ```
 
-That file contains the configurable content for:
-
-- names
-- opening text
-- timeline entries
-- museum exhibits
-- unsaid thoughts
-- letter content
-- Open When messages and unlock dates
-- quiz questions and answers
-- songs
-- future plans
-- surprise messages
-- final reveal
-- settings and Easter eggs
-
-You normally should not need to edit the components to personalize the experience.
-
-### Add Media
-
-Place files in:
+That module contains the editable experience content:
 
 ```text
-public/memories/
-public/photos/
-public/music/
+recipient / sender
+opening copy
+timeline entries
+museum exhibits
+unsaid thoughts
+letter
+open-when letters
+quiz
+soundtrack
+future plans
+destinations
+surprises
+final reveal
+settings
 ```
 
-Use repository-safe relative references such as:
+This separation means the story can change without rewriting the components that present it.
+
+### Media
+
+Place assets under:
+
+```text
+public/
+├── memories/
+├── photos/
+├── music/
+└── icons/
+```
+
+Reference them with repository-safe relative paths such as:
 
 ```js
 './memories/memory-01.jpg'
@@ -300,143 +302,41 @@ Use repository-safe relative references such as:
 './music/our-song.mp3'
 ```
 
-Missing media is handled with placeholders or hidden playback controls instead of taking down the rest of the experience.
-
 ---
 
-## Run Locally
+## 🎨 Design Direction
 
-Requires Node.js 18+.
+The visual language is a blend of **warm editorial typography + midnight space + soft memory objects**.
 
-```bash
-npm install
-npm run dev
-```
-
-For a production check:
-
-```bash
-npm run build
-npm run preview
-```
-
----
-
-## ✦ How It Ships
-
-The repository follows a deliberately simple production loop:
+### Core ingredients
 
 ```text
-        WRITE
-          │
-          ▼
-      `main`
-          │
-          ▼
-   GitHub Actions
-          │
-     npm ci + build
-          │
-          ▼
-     fresh `dist/`
-          │
-          ▼
-    GitHub Pages
+Midnight background
+        +
+Gold / blush / lavender accents
+        +
+Fraunces for expressive moments
+        +
+Sora for interface text
+        +
+Constellation lines
+        +
+Soft panels / paper surfaces
+        +
+Controlled motion
+        =
+A digital keepsake that feels like a place
 ```
 
-The generated build is created by CI and is **not stored in source control**. This keeps the repository focused on the source that actually defines the experience.
-
-` .github/workflows/deploy.yml `
+The design avoids treating every section as the same card grid. Each destination is allowed to have its own visual treatment while still belonging to one system.
 
 ---
 
-## ◇ Inside the Build
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### Content is separated from presentation
-
-The personal layer lives in:
-
-`src/data/giftData.js`
-
-Names, writing, memories, songs, quiz content, future plans, surprises, media references, and experience settings can be changed without rebuilding the component architecture.
-
-</td>
-<td width="50%" valign="top">
-
-### The interface is built as a system
-
-The experience is divided into focused React areas rather than one oversized component.
-
-Shared navigation, transitions, music controls, photo viewing, routing behavior, and reusable hooks sit beside the individual destinations.
-
-</td>
-</tr>
-</table>
-
----
-
-## ✧ Design Principles
-
-This project is guided by a few simple rules:
-
-> **Make the interface feel like a place, not a dashboard.**
-
-> **Use motion to reveal meaning, not to fill empty space.**
-
-> **Let typography and spacing create emotion before effects do.**
-
-> **Keep the implementation lighter than the experience it creates.**
-
-The result is intentionally somewhere between a digital keepsake, an interactive story, and a tiny personal universe.
-
----
-
-## ✦ Experience Map
+## 🧩 Project Structure
 
 ```text
-OPENING
-   │
-   ▼
-UNIVERSE
-   ├── The Beginning
-   ├── Memory Museum
-   ├── Things Unsaid
-   ├── A Letter
-   ├── Open When...
-   ├── The Quiz
-   ├── Soundtrack
-   ├── Surprise Me
-   ├── The Future
-   └── Final Reveal
-```
-
-Each destination is a different interaction with the same underlying story.
-
----
-
-## ⚙ Engineering Details
-
-| Area | Approach |
-|---|---|
-| Routing | Lightweight hash-based navigation |
-| UI Architecture | Focused React components + shared UI |
-| Content | Centralized data-driven configuration |
-| Styling | Global design tokens + section-specific CSS |
-| Motion | CSS transitions / keyframes with reduced-motion handling |
-| Media | Local files under `public/` |
-| Deployment | GitHub Actions → GitHub Pages |
-| Build Output | Generated CI artifact, not committed |
-
----
-
-## ◌ Project Structure
-
-```text
-.
+My-Little-Universe/
+│
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml
@@ -464,85 +364,175 @@ Each destination is a different interaction with the same underlying story.
 │   │   ├── Navigation/
 │   │   ├── PhotoViewer/
 │   │   └── UI/
+│   │
 │   ├── data/
 │   │   └── giftData.js
+│   │
 │   ├── hooks/
+│   │   ├── useHashRoute.js
+│   │   └── useReducedMotion.js
+│   │
 │   ├── styles/
 │   │   ├── global.css
 │   │   └── sections.css
+│   │
 │   ├── App.jsx
 │   └── main.jsx
 │
 ├── index.html
 ├── package.json
+├── package-lock.json
 ├── vite.config.js
 └── .gitignore
 ```
 
 ---
 
-## ♢ Personalization
+## 🛠️ Engineering Notes
 
-The intended editing surface is small.
+### Route handling
 
-```text
-src/data/giftData.js
-        │
-        ├── names
-        ├── memories
-        ├── letter
-        ├── open-when messages
-        ├── quiz
-        ├── soundtrack
-        ├── future plans
-        ├── surprises
-        ├── final reveal
-        └── settings
-```
+`useHashRoute` provides the lightweight route model used by `App.jsx`.
 
-Add photographs, covers, and audio under `public/`, then reference them from the data file.
+### Shared experience layer
+
+Cross-cutting behavior stays outside the individual destination components:
+
+- navigation
+- section transitions
+- music controls
+- hidden Easter eggs
+- reduced-motion behavior
+
+### Data-driven content
+
+Content lives in `giftData.js`, while components decide **how** that content is presented.
+
+That boundary is one of the main maintainability decisions in the project.
 
 ---
 
-## ⌁ Run It
+## ☁️ Deployment
 
-Requires Node.js 18+.
+Production deployment is handled by:
+
+```text
+.github/workflows/deploy.yml
+```
+
+Current CI flow:
+
+```text
+Push to main
+    ↓
+GitHub Actions
+    ↓
+Node 22
+    ↓
+npm ci
+    ↓
+npm run build
+    ↓
+Verify production entry + assets
+    ↓
+Prepare Pages artifact
+    ↓
+GitHub Pages
+```
+
+The generated `dist/` directory is intentionally **not tracked in source control**.
+
+The Vite build uses:
+
+```js
+base: './'
+```
+
+so generated asset references remain relative to the deployed repository path.
+
+---
+
+## 🚀 Run Locally
+
+### Requirements
+
+- Node.js 18+
+- npm
+
+### Start development
 
 ```bash
+git clone https://github.com/chillingbing648-sketch/My-Little-Universe.git
+cd My-Little-Universe
 npm install
 npm run dev
 ```
 
-Production check:
+### Production check
 
 ```bash
 npm run build
 npm run preview
 ```
 
----
+Available scripts:
 
-## ◇ Roadmap
-
-The roadmap stays intentionally small and experience-focused:
-
-```text
-01  More personal memories
-02  More visual keepsakes
-03  More hidden interactions
-04  More soundtrack moments
-05  More reasons to return
-```
-
-These are future directions, not currently implemented features.
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start Vite development server |
+| `npm run build` | Create the production bundle |
+| `npm run preview` | Preview the production bundle |
 
 ---
 
-## Privacy
+## ◌ Current Engineering Snapshot
 
-This project is designed as a static experience.
+| Area | Status |
+|---|:---:|
+| React section architecture | 🟢 |
+| Hash navigation | 🟢 |
+| Universe navigation | 🟢 |
+| Responsive layout | 🟢 |
+| Reduced-motion support | 🟢 |
+| Content/data separation | 🟢 |
+| Music + media layer | 🟢 |
+| Production build | 🟢 |
+| GitHub Actions deployment | 🟢 |
+| Automated tests | 🟡 |
+| Accessibility audit | 🟡 |
+| Advanced media optimization | 🟡 |
+| Import / export | 🔲 |
 
-There is currently:
+**Stage:** Personal interactive experience / active development
+
+---
+
+## 🗺️ Roadmap
+
+The roadmap is intentionally experience-first.
+
+### Next
+
+- More personal memories
+- More visual keepsakes
+- More hidden interactions
+- Better media handling
+- More polished mobile presentation
+
+### Later
+
+- Import / export of experience content
+- More accessibility hardening
+- Deeper offline resilience
+- Additional visual chapters
+
+The roadmap describes future direction, not implemented functionality.
+
+---
+
+## 🔒 Privacy by Design
+
+This project is intentionally static.
 
 ```text
 No backend
@@ -552,15 +542,31 @@ No account system
 No analytics layer
 ```
 
-The personal story remains inside the project and its deployed static assets.
+The live HTML also asks search engines not to index the experience.
+
+Personal text, photographs, audio, and other media should only be added when you are comfortable placing those files inside the project and its deployed static assets.
+
+---
+
+## 🧭 Design Principles
+
+> **Make the interface feel like a place, not a dashboard.**
+
+> **Use motion to reveal meaning, not to fill space.**
+
+> **Let typography and spacing create emotion before effects do.**
+
+> **Keep the implementation lighter than the experience it creates.**
+
+> **Separate the story from the machinery that presents it.**
 
 ---
 
 ## License
 
-Personal / private project.
+Personal project.
 
-The code structure may be used as a reference for experimentation, but personal writing, photographs, music, and other media should be replaced with content you have permission to use.
+The code can be used for experimentation and learning, but personal writing, photographs, music, and other media should be replaced with content you have permission to use.
 
 ---
 
@@ -568,18 +574,14 @@ The code structure may be used as a reference for experimentation, but personal 
 
 ### Built like software. Kept like a memory.
 
-A small React experience for the moments that deserve a place of their own.
-
-<br>
-
 **The Little Universe I Made for You**
 
 <sub>React 18 · Vite 5 · JavaScript · CSS3 · GitHub Actions · GitHub Pages</sub>
 
 <br><br>
 
-<a href="https://chillingbing648-sketch.github.io/My-Little-Universe/">Enter the Universe ↗</a>
+<a href="https://chillingbing648-sketch.github.io/My-Little-Universe/"><strong>Enter the Universe ↗</strong></a>
 &nbsp;&nbsp;·&nbsp;&nbsp;
-<a href="https://github.com/chillingbing648-sketch/My-Little-Universe">Explore the Source ↗</a>
+<a href="https://github.com/chillingbing648-sketch/My-Little-Universe"><strong>Explore the Source ↗</strong></a>
 
 </div>

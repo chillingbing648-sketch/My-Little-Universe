@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEscapeToClose } from '../../hooks/useEscapeToClose'
 
 const MENU_ITEMS = [
   { id: 'universe', label: 'Universe' },
@@ -24,6 +25,8 @@ const BOTTOM_ITEMS = [
 
 export default function Navigation({ route, navigate }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  useEscapeToClose(menuOpen, () => setMenuOpen(false))
+
   if (route === 'opening') return null
 
   return (
@@ -34,13 +37,14 @@ export default function Navigation({ route, navigate }) {
             <span aria-hidden="true">←</span> Universe
           </button>
         ) : (
-          <span />
+          <span className="nav-corner__spacer" aria-hidden="true" />
         )}
         <button
           className="icon-btn"
           onClick={() => setMenuOpen(true)}
           aria-label="Open menu"
           aria-haspopup="dialog"
+          aria-expanded={menuOpen}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
             <line x1="2" y1="5" x2="16" y2="5" stroke="currentColor" strokeWidth="1.4" />

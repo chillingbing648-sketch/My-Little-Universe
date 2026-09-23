@@ -1,25 +1,44 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import StarField from '../UI/StarField'
 
 const NODES = [
-  { id: 'beginning', title: 'The Beginning', x: 18, y: 26, icon: 'spark' },
-  { id: 'museum', title: 'Memory Museum', x: 62, y: 16, icon: 'frame' },
-  { id: 'unsaid', title: "Things I Don't Say Enough", x: 82, y: 40, icon: 'note' },
-  { id: 'letter', title: 'A Letter For You', x: 30, y: 52, icon: 'envelope' },
-  { id: 'openwhen', title: 'Open When…', x: 70, y: 64, icon: 'seal' },
-  { id: 'quiz', title: 'How Well Do You Know Us', x: 12, y: 70, icon: 'question' },
-  { id: 'soundtrack', title: 'Our Soundtrack', x: 46, y: 78, icon: 'wave' },
-  { id: 'surprise', title: 'Surprise Me', x: 90, y: 80, icon: 'star4' },
-  { id: 'future', title: 'The Future', x: 50, y: 38, icon: 'path' },
-  { id: 'final', title: 'One Last Thing', x: 22, y: 90, icon: 'dot' },
+  { id: 'beginning', title: 'The Beginning', x: 18, y: 26, mx: 24, my: 12, icon: 'spark' },
+  { id: 'museum', title: 'Memory Museum', x: 62, y: 16, mx: 72, my: 20, icon: 'frame' },
+  { id: 'unsaid', title: "Things I Don't Say Enough", x: 82, y: 40, mx: 74, my: 38, icon: 'note' },
+  { id: 'letter', title: 'A Letter For You', x: 30, y: 52, mx: 28, my: 47, icon: 'envelope' },
+  { id: 'openwhen', title: 'Open When…', x: 70, y: 64, mx: 72, my: 56, icon: 'seal' },
+  { id: 'quiz', title: 'How Well Do You Know Us', x: 12, y: 70, mx: 24, my: 66, icon: 'question' },
+  { id: 'soundtrack', title: 'Our Soundtrack', x: 46, y: 78, mx: 70, my: 74, icon: 'wave' },
+  { id: 'surprise', title: 'Surprise Me', x: 90, y: 80, mx: 28, my: 83, icon: 'star4' },
+  { id: 'future', title: 'The Future', x: 50, y: 38, mx: 42, my: 30, icon: 'path' },
+  { id: 'final', title: 'One Last Thing', x: 22, y: 90, mx: 62, my: 92, icon: 'dot' },
 ]
 
 const CONNECTIONS = NODES.slice(0, -1).map((node, i) => [node, NODES[i + 1]])
 
+// Fast O(1) adjacency lookup for interaction-aware constellation lines and neighbor stars
+const ADJACENCY_MAP = {}
+NODES.forEach((node) => {
+  ADJACENCY_MAP[node.id] = new Set()
+})
+CONNECTIONS.forEach(([a, b]) => {
+  ADJACENCY_MAP[a.id].add(b.id)
+  ADJACENCY_MAP[b.id].add(a.id)
+})
+
 export default function Universe({ navigate }) {
   const reduced = useReducedMotion()
   const [activeId, setActiveId] = useState(null)
+  const [hoveredId, setHoveredId] = useState(null)
+  const [focusedId, setFocusedId] = useState(null)
+  const timerRef = useRef(null)
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
 
   function selectNode(id) {
     if (activeId) return
@@ -30,8 +49,10 @@ export default function Universe({ navigate }) {
     }
 
     setActiveId(id)
-    setTimeout(() => navigate(id), 420)
+    timerRef.current = setTimeout(() => navigate(id), 420)
   }
+
+  const interactedId = activeId || hoveredId || focusedId
 
   return (
     <div className="screen universe">
@@ -46,52 +67,112 @@ export default function Universe({ navigate }) {
       </div>
 
       <div
-        className={`universe__field ${activeId ? 'is-traveling' : ''}`}
+        className={`universe__field ${activeId ? 'is-traveling' : ''} ${interactedId ? 'has-interaction' : ''}`}
         role="navigation"
         aria-label="Sections of the universe"
       >
+        {/* Desktop constellation threads */}
         <svg
-          className="universe__lines"
+          className="universe__lines universe__lines--desktop"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
-          {CONNECTIONS.map(([a, b], i) => (
-            <line
-              key={i}
-              x1={a.x}
-              y1={a.y}
-              x2={b.x}
-              y2={b.y}
-              className={
-                activeId && (a.id === activeId || b.id === activeId)
-                  ? 'universe__line universe__line--lit'
-                  : 'universe__line'
-              }
-            />
-          ))}
+          {CONNECTIONS.map(([a, b], i) => {
+            const isLit = activeId && (a.id === activeId || b.id === activeId)
+            const isRelated = interactedId && (a.id === interactedId || b.id === interactedId)
+            const isDimmed = interactedId && !isRelated
+
+            let lineClass = 'universe__line'
+            if (isLit) lineClass += ' universe__line--lit'
+            else if (isRelated) lineClass += ' universe__line--active'
+            else if (isDimmed) lineClass += ' universe__line--dimmed'
+
+            return (
+              <line
+                key={`d-${i}`}
+                x1={a.x}
+                y1={a.y}
+                x2={b.x}
+                y2={b.y}
+                className={lineClass}
+              />
+            )
+          })}
+        </svg>
+
+        {/* Mobile constellation threads */}
+        <svg
+          className="universe__lines universe__lines--mobile"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {CONNECTIONS.map(([a, b], i) => {
+            const isLit = activeId && (a.id === activeId || b.id === activeId)
+            const isRelated = interactedId && (a.id === interactedId || b.id === interactedId)
+            const isDimmed = interactedId && !isRelated
+
+            let lineClass = 'universe__line'
+            if (isLit) lineClass += ' universe__line--lit'
+            else if (isRelated) lineClass += ' universe__line--active'
+            else if (isDimmed) lineClass += ' universe__line--dimmed'
+
+            return (
+              <line
+                key={`m-${i}`}
+                x1={a.mx}
+                y1={a.my}
+                x2={b.mx}
+                y2={b.my}
+                className={lineClass}
+              />
+            )
+          })}
         </svg>
 
         {NODES.map((node, i) => {
           const isActive = activeId === node.id
-          const isDimmed = activeId && !isActive
+          const isHovered = hoveredId === node.id
+          const isFocused = focusedId === node.id
+          const isConnected = Boolean(
+            interactedId && interactedId !== node.id && ADJACENCY_MAP[interactedId]?.has(node.id)
+          )
+          const isDimmed = Boolean(
+            interactedId && interactedId !== node.id && !ADJACENCY_MAP[interactedId]?.has(node.id)
+          )
+
+          let nodeClasses = 'universe__node'
+          if (!reduced) nodeClasses += ' universe__node--float'
+          if (isActive) nodeClasses += ' is-active'
+          if (isHovered) nodeClasses += ' is-hovered'
+          if (isFocused) nodeClasses += ' is-focused'
+          if (isConnected) nodeClasses += ' is-connected'
+          if (isDimmed) nodeClasses += ' is-dimmed'
 
           return (
             <button
               key={node.id}
-              className={`universe__node ${
-                reduced ? '' : 'universe__node--float'
-              } ${isActive ? 'is-active' : ''} ${
-                isDimmed ? 'is-dimmed' : ''
-              }`}
+              className={nodeClasses}
               style={{
+                '--x': `${node.x}%`,
+                '--y': `${node.y}%`,
+                '--mx': `${node.mx}%`,
+                '--my': `${node.my}%`,
                 left: `${node.x}%`,
                 top: `${node.y}%`,
                 '--enter-delay': `${(i % 6) * 70}ms`,
                 '--float-delay': `${(i % 5) * 0.6}s`,
               }}
               onClick={() => selectNode(node.id)}
+              onPointerEnter={(e) => {
+                if (e.pointerType !== 'touch') setHoveredId(node.id)
+              }}
+              onPointerLeave={() => setHoveredId(null)}
+              onFocus={() => setFocusedId(node.id)}
+              onBlur={() => setFocusedId(null)}
               disabled={!!activeId}
+              aria-label={node.title}
             >
               <span className="universe__node-glow" aria-hidden="true" />
               <NodeIcon name={node.icon} />

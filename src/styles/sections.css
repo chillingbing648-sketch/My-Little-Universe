@@ -1463,6 +1463,37 @@
 }
 
 /* --------------------------------------------------------------------------
+   Typography Refinements (Universe Intro)
+   Elegant, restrained layout for the headline and subtitle. 
+   -------------------------------------------------------------------------- */
+.universe__intro {
+  margin-top: 4vh;
+  margin-bottom: -2vh;
+  position: relative;
+  z-index: 10;
+}
+.universe__intro .eyebrow {
+  margin-bottom: 1.2em;
+  color: rgba(220, 226, 248, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.universe__intro .heading-l {
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.94);
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.12);
+  margin-bottom: 0.4em;
+}
+.universe__intro .body-text {
+  font-size: 1.05rem;
+  color: rgba(220, 226, 248, 0.55);
+  letter-spacing: 0.015em;
+  max-width: 42ch;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
    Field: mid haze (behind lines) and faint foreground motes (in front)
    -------------------------------------------------------------------------- */
 .universe__field {
@@ -1517,19 +1548,20 @@
   height: 100%;
   overflow: visible;
   transform: translateY(-13px);
-  filter:
-    drop-shadow(0 0 2px rgba(var(--u-lav), 0.6))
-    drop-shadow(0 0 6px rgba(var(--u-lav), 0.42))
-    drop-shadow(0 0 14px rgba(110, 122, 224, 0.45));
+  filter: drop-shadow(0 0 5px rgba(var(--u-lav), 0.7));
+  pointer-events: none;
 }
+.universe__lines--desktop { display: block; }
+.universe__lines--mobile { display: none; }
+
 .universe__line {
   vector-effect: non-scaling-stroke;
-  stroke: rgba(216, 208, 246, 0.9);
-  stroke-width: 1.6px;
+  stroke: rgba(216, 208, 246, 0.45);
+  stroke-width: 1.5px;
   stroke-linecap: round;
   stroke-dasharray: 0.5px 5.5px;
-  transition: stroke var(--dur-m) var(--ease), opacity var(--dur-m) var(--ease), stroke-width var(--dur-m) var(--ease);
-  opacity: 0.85;
+  transition: stroke var(--dur-m) var(--ease), opacity var(--dur-m) var(--ease), stroke-width var(--dur-m) var(--ease), filter var(--dur-m) var(--ease);
+  opacity: 0.75;
   animation:
     uLineFlow 140s linear infinite,
     uLineWave 16s ease-in-out infinite;
@@ -1545,39 +1577,29 @@
 .universe__line:nth-child(8) { animation-delay: 0s, 8.4s; }
 .universe__line:nth-child(9) { animation-delay: 0s, 9.6s; }
 
+/* Connected thread response during hover/focus */
+.universe__line--active {
+  stroke: rgba(255, 235, 195, 0.95);
+  stroke-width: 2px;
+  stroke-dasharray: 0.5px 4px;
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(242, 200, 131, 0.65));
+}
+
+.universe__line--dimmed {
+  opacity: 0.22;
+  stroke-width: 1.2px;
+}
+
 .universe__line--lit {
   stroke: var(--c-star-bright);
-  stroke-width: 2px;
+  stroke-width: 2.2px;
   stroke-dasharray: none;
   opacity: 1;
   animation: none;
+  filter: drop-shadow(0 0 8px rgba(255, 227, 173, 0.8));
 }
-.universe__field.is-traveling .universe__line:not(.universe__line--lit) { opacity: 0.25; }
-
-/* Pointer feel: hovering (or keyboard-focusing) a star warms the two threads
-   that reach it — thread N joins star N and N+1. */
-.universe__field:has(.universe__node:nth-of-type(1):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(1),
-.universe__field:has(.universe__node:nth-of-type(2):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(1),
-.universe__field:has(.universe__node:nth-of-type(2):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(2),
-.universe__field:has(.universe__node:nth-of-type(3):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(2),
-.universe__field:has(.universe__node:nth-of-type(3):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(3),
-.universe__field:has(.universe__node:nth-of-type(4):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(3),
-.universe__field:has(.universe__node:nth-of-type(4):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(4),
-.universe__field:has(.universe__node:nth-of-type(5):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(4),
-.universe__field:has(.universe__node:nth-of-type(5):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(5),
-.universe__field:has(.universe__node:nth-of-type(6):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(5),
-.universe__field:has(.universe__node:nth-of-type(6):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(6),
-.universe__field:has(.universe__node:nth-of-type(7):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(6),
-.universe__field:has(.universe__node:nth-of-type(7):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(7),
-.universe__field:has(.universe__node:nth-of-type(8):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(7),
-.universe__field:has(.universe__node:nth-of-type(8):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(8),
-.universe__field:has(.universe__node:nth-of-type(9):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(8),
-.universe__field:has(.universe__node:nth-of-type(9):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(9),
-.universe__field:has(.universe__node:nth-of-type(10):is(:hover, :focus-visible):not(:disabled)) .universe__line:nth-child(9) {
-  stroke: rgba(255, 232, 190, 0.95);
-  stroke-width: 1.9px;
-  opacity: 1;
-}
+.universe__field.is-traveling .universe__line:not(.universe__line--lit) { opacity: 0.2; }
 
 /* --------------------------------------------------------------------------
    Nodes — small worlds, not buttons
@@ -1737,30 +1759,91 @@
   pointer-events: none;
 }
 
-/* Hover / keyboard focus — the star wakes */
+/* Hover & focus-visible — the star wakes with controlled emphasis */
 .universe__node:hover .universe__node-glow,
-.universe__node:focus-visible .universe__node-glow { opacity: 1; scale: 1.22; }
+.universe__node:focus-visible .universe__node-glow,
+.universe__node.is-hovered .universe__node-glow,
+.universe__node.is-focused .universe__node-glow {
+  opacity: 1;
+  scale: 1.2;
+}
 .universe__node:hover .universe__node-glow::before,
-.universe__node:focus-visible .universe__node-glow::before { border-color: rgba(var(--node-rgb), 0.6); }
+.universe__node:focus-visible .universe__node-glow::before,
+.universe__node.is-hovered .universe__node-glow::before,
+.universe__node.is-focused .universe__node-glow::before {
+  border-color: rgba(var(--node-rgb), 0.65);
+}
 .universe__node:hover .universe__node-glow::after,
-.universe__node:focus-visible .universe__node-glow::after { box-shadow: inset 0 0 11px rgba(var(--node-rgb), 0.6), 0 0 28px 3px rgba(var(--node-rgb), 0.5); }
+.universe__node:focus-visible .universe__node-glow::after,
+.universe__node.is-hovered .universe__node-glow::after,
+.universe__node.is-focused .universe__node-glow::after {
+  box-shadow: inset 0 0 11px rgba(var(--node-rgb), 0.65), 0 0 28px 3px rgba(var(--node-rgb), 0.5);
+}
 .universe__node:hover > svg,
-.universe__node:focus-visible > svg { filter: drop-shadow(0 0 6px rgba(var(--node-rgb), 0.95)); }
+.universe__node:focus-visible > svg,
+.universe__node.is-hovered > svg,
+.universe__node.is-focused > svg {
+  filter: drop-shadow(0 0 6px rgba(var(--node-rgb), 0.95));
+}
 .universe__node:hover:not(:disabled)::before,
-.universe__node:focus-visible::before { opacity: 0.6; transform: scale(1) rotate(0deg); }
-.universe__node:hover, .universe__node:focus-visible { color: var(--c-star); }
-/* (The original scale(1.08) is kept; `scale` is what actually takes effect,
-   because nodeEnter's fill holds `transform`.) */
-.universe__node:hover:not(:disabled) { transform: translate(-50%, -50%) scale(1.08); scale: 1.06; }
+.universe__node:focus-visible::before,
+.universe__node.is-hovered:not(:disabled)::before,
+.universe__node.is-focused::before {
+  opacity: 0.6;
+  transform: scale(1) rotate(0deg);
+}
+.universe__node:hover,
+.universe__node:focus-visible,
+.universe__node.is-hovered,
+.universe__node.is-focused {
+  color: var(--c-star-bright);
+}
+.universe__node:hover:not(:disabled),
+.universe__node.is-hovered:not(:disabled) {
+  scale: 1.08;
+}
 
-/* Pointer feel: while one star is hovered, its neighbours recede a touch. */
-.universe__field:has(.universe__node:hover:not(:disabled)) .universe__node:not(:hover) { filter: opacity(0.72); }
+/* Keyboard focus — elegant celestial concentric ring */
+.universe__node:focus-visible {
+  outline: none;
+}
+.universe__node:focus-visible .universe__node-glow::after {
+  box-shadow:
+    inset 0 0 11px rgba(var(--node-rgb), 0.7),
+    0 0 0 2px rgba(8, 10, 18, 0.95),
+    0 0 0 4px rgba(var(--node-rgb), 0.85),
+    0 0 22px 4px rgba(var(--node-rgb), 0.5);
+}
+
+/* Nearby / Connected node state — subtle starlight awakening */
+.universe__node.is-connected {
+  color: #f0e6d2;
+}
+.universe__node.is-connected .universe__node-glow {
+  opacity: 0.92;
+  scale: 1.1;
+}
+.universe__node.is-connected .universe__node-glow::before {
+  border-color: rgba(var(--node-rgb), 0.45);
+}
+.universe__node.is-connected .universe__node-glow::after {
+  box-shadow: inset 0 0 9px rgba(var(--node-rgb), 0.5), 0 0 24px 2px rgba(var(--node-rgb), 0.35);
+}
+.universe__node.is-connected .universe__node-label {
+  color: #f0e6d2;
+  text-shadow: 0 1px 3px rgba(4, 5, 12, 0.95), 0 0 12px rgba(var(--node-rgb), 0.4);
+}
+
+/* Dimmed state — surrounding elements gracefully recede without disappearing */
+.universe__node.is-dimmed {
+  filter: opacity(0.4) saturate(0.7);
+}
 
 /* Active — the chosen star briefly becomes the focal point */
-.universe__node.is-active { color: var(--c-star-bright); z-index: 3; }
+.universe__node.is-active { color: var(--c-star-bright); z-index: 5; }
 .universe__node.is-active .universe__node-glow {
   opacity: 1;
-  scale: 1.9;
+  scale: 1.7;
   animation: nodeGlowPulse 420ms ease-out;
 }
 .universe__node.is-active .universe__node-glow::before { border-color: rgba(255, 227, 173, 0.75); }
@@ -1781,10 +1864,6 @@
   to { filter: brightness(1.25); }
 }
 
-/* Dimmed / disabled. The original `opacity: 0.25` never took effect (nodeEnter's
-   forwards-fill pins opacity at 1), so the same intent is expressed with
-   `filter: opacity()`, which the animation doesn't touch. */
-.universe__node.is-dimmed { filter: opacity(0.28) saturate(0.6); }
 .universe__node:disabled { cursor: default; }
 
 /* Labels — same size and wrapping as before, now set in soft starlight with a
@@ -1901,36 +1980,81 @@
   .universe__field::before,
   .universe__field::after { display: none; }
 
-  .universe__lines { display: none; }
+  /* Curated responsive constellation field on mobile */
+  .universe__lines--desktop { display: none; }
+  .universe__lines--mobile { display: block; }
+
   .universe__field {
-    position: static;
+    position: relative;
+    width: 100%;
+    min-height: 86vh;
+    min-height: 86dvh;
+    padding: 10px 10px 80px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .universe__node {
+    position: absolute;
+    left: var(--mx, var(--x));
+    top: var(--my, var(--y));
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    min-height: 0;
+    align-items: center;
+    gap: 4px;
+    padding: 6px;
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: 50%;
+    border-bottom: none;
+    --halo: 68px;
+    --core: 28px;
+    --ring: 48px;
   }
-  .universe__node {
-    position: static;
-    transform: none;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 12px;
-    width: 100%;
-    padding: 16px 10px;
-    border-bottom: 1px solid rgba(var(--u-lav), 0.12);
-    border-radius: 0;
-    animation: fadeUp var(--dur-l) var(--ease) both;
-    animation-delay: var(--enter-delay, 0ms);
+  .universe__node:nth-of-type(10) {
+    --halo: 78px;
+    --core: 32px;
+    --ring: 56px;
   }
-  .universe__node:hover:not(:disabled), .universe__node:focus-visible { transform: none; scale: none; background: var(--c-line); border-radius: var(--radius-m); }
-  .universe__node > svg { filter: drop-shadow(0 0 4px rgba(var(--node-rgb), 0.5)); }
-  .universe__node-label { text-align: left; max-width: none; font-size: 0.95rem; }
-  .universe__node-glow { display: none; }
-  .universe__node::before,
-  .universe__node::after { display: none; }
-  .universe__field:has(.universe__node:hover:not(:disabled)) .universe__node:not(:hover) { filter: none; }
-  .universe__node.is-active { animation: fadeUp var(--dur-l) var(--ease) both; background: rgba(242,200,131,0.08); border-radius: var(--radius-m); }
-  .universe__node.is-dimmed { filter: opacity(0.3); }
+
+  .universe__node > svg {
+    width: 17px;
+    height: 17px;
+    filter: drop-shadow(0 0 4px rgba(var(--node-rgb), 0.6));
+  }
+
+  .universe__node-label {
+    font-size: 0.68rem;
+    max-width: 82px;
+    line-height: 1.15;
+    text-align: center;
+    color: rgba(229, 233, 246, 0.88);
+  }
+
+  .universe__node-glow {
+    display: block;
+    top: 15px;
+  }
+  .universe__node-glow::before {
+    display: block;
+  }
+  .universe__node-glow::after {
+    display: block;
+  }
+
+  .universe__node:hover:not(:disabled),
+  .universe__node:focus-visible {
+    transform: translate(-50%, -50%) scale(1.06);
+    background: none;
+  }
+  .universe__node.is-active {
+    background: none;
+    scale: 1.15;
+  }
+  .universe__node.is-dimmed {
+    filter: opacity(0.36) saturate(0.7);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2323,41 +2447,50 @@
    slow aura that breathes only while music is playing.
    ========================================================================== */
 .music-player {
+  position: fixed;
   bottom: calc(18px + var(--safe-b));
   right: max(18px, var(--safe-r));
+  z-index: 25;
   isolation: isolate;
-  gap: 0.6em;
-  padding: 0.38em 1.15em 0.38em 0.38em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 40px;
+  padding: 4px 14px 4px 5px;
+  border-radius: 999px;
   max-width: calc(100vw - 36px);
   color: var(--text-2);
-  border-color: var(--edge);
-  background-color: rgba(14, 18, 34, 0.66);
+  border: 1px solid rgba(233, 235, 242, 0.12);
+  background-color: rgba(14, 18, 34, 0.72);
   background-image: var(--glass-sheen);
-  -webkit-backdrop-filter: blur(22px) saturate(1.45);
-  backdrop-filter: blur(22px) saturate(1.45);
-  box-shadow: var(--rim-hi), 0 1px 2px rgba(3, 4, 10, 0.5), 0 20px 44px -16px rgba(3, 4, 10, 0.85);
-  transition: box-shadow var(--dur-m) var(--ease-out), border-color var(--dur-m) var(--ease-out), translate var(--dur-m) var(--ease-out);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  backdrop-filter: blur(16px) saturate(1.3);
+  box-shadow: 0 8px 24px -6px rgba(4, 5, 12, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition:
+    border-color var(--dur-m) var(--ease),
+    box-shadow var(--dur-m) var(--ease),
+    padding var(--dur-m) var(--ease);
 }
 .music-player::before {
   content: '';
   position: absolute;
-  inset: -4px;
+  inset: -3px;
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
   background:
-    radial-gradient(70% 150% at 16% 50%, rgba(var(--rgb-gold), 0.34), transparent 70%),
-    radial-gradient(60% 150% at 86% 50%, rgba(var(--rgb-lav), 0.2), transparent 72%);
-  filter: blur(14px);
+    radial-gradient(70% 150% at 16% 50%, rgba(var(--rgb-gold), 0.28), transparent 70%),
+    radial-gradient(60% 150% at 86% 50%, rgba(var(--rgb-lav), 0.16), transparent 72%);
+  filter: blur(12px);
   opacity: 0;
   transition: opacity var(--dur-l) var(--ease-out);
 }
 .music-player.is-playing {
-  border-color: rgba(var(--rgb-gold), 0.4);
-  box-shadow: var(--rim-hi), 0 1px 2px rgba(3, 4, 10, 0.5), 0 20px 44px -16px rgba(3, 4, 10, 0.85), 0 0 34px -6px rgba(var(--rgb-gold), 0.28);
+  border-color: rgba(var(--rgb-gold), 0.38);
+  box-shadow: 0 8px 24px -6px rgba(4, 5, 12, 0.7), 0 0 24px -4px rgba(var(--rgb-gold), 0.25);
 }
 .music-player.is-playing::before {
-  opacity: 0.9;
+  opacity: 0.85;
   animation: dsAura 5.2s ease-in-out infinite;
 }
 @keyframes dsAura {
@@ -2366,61 +2499,137 @@
 }
 
 .music-player .music-player__toggle {
-  min-width: 40px;
-  min-height: 40px;
-  color: var(--text-1);
-  background-color: rgba(255, 255, 255, 0.04);
-  background-image: radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.05) 56%, rgba(255, 255, 255, 0.02));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.13), 0 6px 12px -4px rgba(3, 4, 10, 0.7);
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-star);
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(242, 200, 131, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: all var(--dur-s) var(--ease);
+}
+.music-player .music-player__toggle:hover,
+.music-player .music-player__toggle:focus-visible {
+  background-color: rgba(242, 200, 131, 0.16);
+  border-color: rgba(242, 200, 131, 0.5);
+  transform: scale(1.05);
 }
 .music-player.is-playing .music-player__toggle {
-  color: #231607;
+  color: #1e1507;
   background-color: var(--c-star);
-  background-image:
-    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 56%),
-    linear-gradient(135deg, #f8dca6, #e4b06a);
-  box-shadow: inset 0 0 0 1px rgba(255, 236, 196, 0.6), 0 0 20px -2px rgba(var(--rgb-gold), 0.5), 0 6px 12px -4px rgba(3, 4, 10, 0.7);
-}
-.music-player__title {
-  max-width: 140px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  background-image: linear-gradient(135deg, #f8dca6, #e4b06a);
+  border-color: rgba(255, 236, 196, 0.8);
+  box-shadow: 0 0 14px 1px rgba(var(--rgb-gold), 0.45);
 }
 
-/* Volume: an Apple-style capsule with a warm fill and a lit end-cap */
+.music-player__body {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.music-player__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.music-player__title {
+  max-width: 110px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  color: rgba(233, 235, 242, 0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Audio wave equalizer bars */
+.music-player__bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+  margin-right: 2px;
+}
+.music-player__bar {
+  width: 2px;
+  background: var(--c-star);
+  border-radius: 1px;
+  animation: uSoundBar 0.9s ease-in-out infinite alternate;
+}
+.music-player__bar:nth-child(1) { height: 5px; animation-delay: 0s; }
+.music-player__bar:nth-child(2) { height: 11px; animation-delay: 0.22s; }
+.music-player__bar:nth-child(3) { height: 7px; animation-delay: 0.44s; }
+
+@keyframes uSoundBar {
+  0% { transform: scaleY(0.35); }
+  100% { transform: scaleY(1); }
+}
+
+/* Progressive disclosure: volume expands smoothly on interaction */
+.music-player__controls {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition:
+    max-width var(--dur-m) var(--ease),
+    opacity var(--dur-m) var(--ease),
+    margin var(--dur-m) var(--ease);
+}
+.music-player:hover .music-player__controls,
+.music-player:focus-within .music-player__controls,
+.music-player.is-interacted .music-player__controls {
+  max-width: 76px;
+  opacity: 1;
+  pointer-events: auto;
+  margin-left: 0.25rem;
+}
+
 .music-player input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   flex: none;
-  width: 72px;
-  height: 6px;
+  width: 68px;
+  height: 4px;
   margin: 0;
   padding: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.16);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   cursor: pointer;
   transition: scale var(--dur-s) var(--ease-out), background-color var(--dur-s) var(--ease-out);
 }
-.music-player input[type="range"]:hover { scale: 1 1.4; background: rgba(255, 255, 255, 0.18); }
-.music-player input[type="range"]:focus-visible { outline-offset: 4px; }
-.music-player input[type="range"]::-webkit-slider-runnable-track { height: 6px; background: transparent; }
+.music-player input[type="range"]:hover {
+  scale: 1 1.35;
+  background: rgba(255, 255, 255, 0.22);
+}
+.music-player input[type="range"]:focus-visible {
+  outline-offset: 3px;
+}
+.music-player input[type="range"]::-webkit-slider-runnable-track { height: 4px; background: transparent; }
 .music-player input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 3px;
-  height: 6px;
+  height: 4px;
   border: 0;
   border-radius: 0;
   background: var(--c-star-bright);
-  box-shadow: -100vmax 0 0 100vmax rgba(var(--rgb-gold), 0.7), 0 0 8px 1px rgba(var(--rgb-gold-hi), 0.8);
+  box-shadow: -100vmax 0 0 100vmax rgba(var(--rgb-gold), 0.75), 0 0 6px 1px rgba(var(--rgb-gold-hi), 0.85);
 }
-.music-player input[type="range"]::-moz-range-track { height: 6px; background: transparent; border: 0; }
-.music-player input[type="range"]::-moz-range-progress { height: 6px; background: rgba(var(--rgb-gold), 0.7); }
+.music-player input[type="range"]::-moz-range-track { height: 4px; background: transparent; border: 0; }
+.music-player input[type="range"]::-moz-range-progress { height: 4px; background: rgba(var(--rgb-gold), 0.75); }
 .music-player input[type="range"]::-moz-range-thumb {
   width: 3px;
-  height: 6px;
+  height: 4px;
   border: 0;
   border-radius: 0;
   background: var(--c-star-bright);
@@ -2681,7 +2890,7 @@ a.pill-tag:active { scale: 0.95; transition-duration: var(--dur-xs); }
 @media (pointer: coarse) {
   .btn { min-height: 48px; }
   .icon-btn { min-width: 44px; min-height: 44px; }
-  .music-player .music-player__toggle { min-width: 44px; min-height: 44px; }
+  .music-player .music-player__toggle { width: 36px; height: 36px; min-width: 36px; min-height: 36px; }
   .menu-list button { min-height: 52px; }
   a.pill-tag { padding: 0.62em 1.1em; }
   .music-player input[type="range"] { height: 14px; }

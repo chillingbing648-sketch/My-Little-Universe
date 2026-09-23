@@ -3,6 +3,7 @@ import StarField from '../UI/StarField'
 import { giftData } from '../../data/giftData'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
+
 const STAGE_DELAYS_MS = [400, 1200, 2200, 3200, 4000]
 
 export default function Opening({ onEnter }) {

@@ -2,14 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 import { giftData, settings } from '../../data/giftData'
 import { PlayIcon, PauseIcon } from './PlaybackIcons'
 
-// Never autoplays. Shows up only after the visitor has entered the universe,
-// and disappears gracefully if no audio file is configured or found.
+// Compact cinematic media object with progressive disclosure.
+// Collapsed into a minimal starlight pill by default; expands smoothly on hover or interaction.
 export default function MusicPlayer() {
   const { music } = giftData
   const audioRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [volume, setVolume] = useState(0.6)
   const [available, setAvailable] = useState(true)
+  const [isInteracted, setIsInteracted] = useState(false)
 
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume
@@ -24,38 +25,74 @@ export default function MusicPlayer() {
       audio.pause()
       setPlaying(false)
     } else {
-      audio.play().catch(() => setAvailable(false))
+      audio.play().catch(() => {
+        setPlaying(false)
+      })
       setPlaying(true)
     }
   }
 
   return (
-    <div className={`music-player ${playing ? 'is-playing' : ''}`} role="group" aria-label="Background music">
+    <div
+      className={`music-player ${playing ? 'is-playing' : ''} ${isInteracted ? 'is-interacted' : ''}`}
+      role="group"
+      aria-label="Background music"
+      onPointerEnter={() => setIsInteracted(true)}
+      onPointerLeave={() => setIsInteracted(false)}
+      onFocusCapture={() => setIsInteracted(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setIsInteracted(false)
+        }
+      }}
+    >
       <audio
         ref={audioRef}
         src={music.src}
         loop
         preload="none"
-        onError={() => setAvailable(false)}
+        onEnded={() => setPlaying(false)}
+        onError={() => {
+          setPlaying(false)
+        }}
       />
+
       <button
         className="icon-btn music-player__toggle"
         onClick={toggle}
         aria-label={playing ? 'Pause music' : 'Play music'}
-        style={{ width: 32, height: 32 }}
+        aria-pressed={playing}
       >
         {playing ? <PauseIcon /> : <PlayIcon />}
       </button>
-      <span className="music-player__title">♪ {music.title || 'Our soundtrack'}</span>
-      <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.05"
-        value={volume}
-        onChange={(e) => setVolume(Number(e.target.value))}
-        aria-label="Volume"
-      />
+
+      <div className="music-player__body">
+        <div className="music-player__meta">
+          {playing && (
+            <span className="music-player__bars" aria-hidden="true">
+              <span className="music-player__bar" />
+              <span className="music-player__bar" />
+              <span className="music-player__bar" />
+            </span>
+          )}
+          <span className="music-player__title" title={music.title || 'Our soundtrack'}>
+            {music.title || 'Our soundtrack'}
+          </span>
+        </div>
+
+        <div className="music-player__controls">
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value={volume}
+            onChange={(e) => setVolume(Number(e.target.value))}
+            aria-label="Volume"
+          />
+        </div>
+      </div>
     </div>
   )
 }
+
